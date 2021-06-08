@@ -1,7 +1,8 @@
 # Yao Group Server Infrastructure Note
 
-[![View it on HackMd](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w/badge)](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
+[View it on HackMd](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
 
+---
 ## Remote Access to the Server
 
 The IP address of the server is *yaolab.princeton.edu*.
@@ -20,6 +21,7 @@ One can access desktop GUI via [Microsoft RDP](https://docs.microsoft.com/en-us/
 
 
 ### Tutorial and tips for SSH login
+---
 
 #### Q: How can I login into the server?
 It's easy. Just open any terminal like cmd. Then type and enter to execute:
@@ -40,5 +42,24 @@ It involves mainly three steps:
 
 Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to conduct those steps exactly. After the above steps, the local device is somwhat "regesitered" on the server, and ssh login no longer requires password.
 
+---
 ### Tutorials on Microsoft RDP Access
-...
+
+
+
+Assuming we are already under Princeton VPN service.
+
+#### For Windows
+
+Windows has built-in **Remote Desktop Connection**, open it and connect to yaolab.princeton.edu
+![](https://i.imgur.com/MxL1Wn5.png)
+
+#### For Mac
+:::warning
+This section is NOT tested yet
+:::
+
+Download [Microsoft Remote Desktop for Mac](https://apps.apple.com/tw/app/microsoft-remote-desktop/id1295203466?mt=12), then follow the steps in Windows section.
+
+
+###### addtional info: [Admin notes on HackMD](https://hackmd.io/qW7dli1lTwi4HUW4PzEiUA)
