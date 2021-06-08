@@ -2,7 +2,7 @@
 
 [View it on HackMd](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
 
----
+
 ## Remote Access to the Server
 
 The IP address of the server is *yaolab.princeton.edu*.
@@ -54,6 +54,11 @@ Assuming we are already under Princeton VPN service.
 Windows has built-in **Remote Desktop Connection**, open it and connect to yaolab.princeton.edu
 ![](https://i.imgur.com/MxL1Wn5.png)
 
+A login page will show up.
+Type your account and password, done!
+![](https://i.imgur.com/3k3foQu.png)
+
+
 #### For Mac
 :::warning
 This section is NOT tested yet
@@ -63,3 +68,11 @@ Download [Microsoft Remote Desktop for Mac](https://apps.apple.com/tw/app/micros
 
 
 ###### addtional info: [Admin notes on HackMD](https://hackmd.io/qW7dli1lTwi4HUW4PzEiUA)
+
+---
+
+## Access JupyterLab Service
+...
+
+
+###### addtional info: [Admin notes on HackMD](...)
