@@ -46,12 +46,11 @@ Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to
 ### Tutorials on Microsoft RDP Access
 
 #### XFCE Resources
-Instead of using standard GNOME desktop environment,
-we use [XFCE](https://www.xfce.org/) since it's faster.
-You can find your installed applications on the top left:
+Instead of using standard, pretty, and arguably more intuitive GNOME desktop environment, we use [XFCE](https://www.xfce.org/) since it's faster. You can find your installed applications on the top left:
 
 ![](https://i.imgur.com/sa6iVje.png)
 
+You may want to know that dragging the application to desktop can fast create the shortcut. For other thing, one can refer  to the [official wiki page](https://wiki.xfce.org/) or do some Google.
 
 #### Connection
 Assuming we are already under Princeton VPN service.
