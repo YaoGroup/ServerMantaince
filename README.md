@@ -45,26 +45,35 @@ Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to
 ---
 ### Tutorials on Microsoft RDP Access
 
+#### XFCE Resources
+Instead of using standard GNOME desktop environment,
+we use [XFCE](https://www.xfce.org/) since it's faster.
+You can find your installed applications on the top left:
+
+![](https://i.imgur.com/sa6iVje.png)
 
 
+#### Connection
 Assuming we are already under Princeton VPN service.
 
-#### For Windows
+> **For Windows**
+>
+> Windows has built-in **Remote Desktop Connection**, open it and connect to yaolab.princeton.edu
+> 
+> ![](https://i.imgur.com/MxL1Wn5.png)
+>
+> A login page will show up.
+> Type your account and password, done!
+> ![](https://i.imgur.com/3k3foQu.png)
+---
+> **For Mac**
+> :::warning
+> This section is NOT tested yet
+> :::
+> Download [Microsoft Remote Desktop for Mac](https://apps.apple.com/tw/app/microsoft-remote-desktop/id1295203466?mt=12), then follow the steps in Windows > section.
 
-Windows has built-in **Remote Desktop Connection**, open it and connect to yaolab.princeton.edu
-![](https://i.imgur.com/MxL1Wn5.png)
-
-A login page will show up.
-Type your account and password, done!
-![](https://i.imgur.com/3k3foQu.png)
 
 
-#### For Mac
-:::warning
-This section is NOT tested yet
-:::
-
-Download [Microsoft Remote Desktop for Mac](https://apps.apple.com/tw/app/microsoft-remote-desktop/id1295203466?mt=12), then follow the steps in Windows section.
 
 
 ###### addtional info: [Admin notes on HackMD](https://hackmd.io/qW7dli1lTwi4HUW4PzEiUA)
