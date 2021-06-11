@@ -131,3 +131,23 @@ We suggest creating environments via yml file (`conda env create -f my_environme
 
 
 ###### addtional info: [Admin notes on HackMD](https://hackmd.io/@MingRuey/Sy3D6VAc_)
+---
+
+### Tutorials on Mounting /proejcts/LAI in Tigressdata
+
+The [data storage of Princeton Research Computing]("https://researchcomputing.princeton.edu/support/knowledge-base/data-storage") has two areas for large storage supported with backup system. Our group acquire few TB space on /project/LAI. We show how to mount local drive to the space:
+
+> **For Windows**
+> 
+> ...
+
+> **For Linux**
+> ...
+> 
+> https://wiki.ubuntu.com/MountWindowsSharesPermanently
+
+> **For Mac**
+>
+> -- Under construction --
+
+There is also [a page on Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/tigress-cifs) on how to mount on various spaces on HPC clusters.
