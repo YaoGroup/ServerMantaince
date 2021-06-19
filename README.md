@@ -40,7 +40,7 @@ It involves mainly three steps:
 2. Add public key of key-pair to the allowed identities list on target device (i.e. the server)
 3. Add private key of key-pair to be the idendity of local device.
 
-Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to conduct those steps exactly. After the above steps, the local device is somwhat "regesitered" on the server, and ssh login no longer requires password.
+Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to conduct those steps exactly. After the above steps, the local device is somewhat "regesitered" on the server, and ssh login no longer requires password.
 
 ---
 ### Tutorials on Microsoft RDP Access
@@ -50,7 +50,7 @@ Instead of using standard, pretty, and arguably more intuitive GNOME desktop env
 
 ![](https://i.imgur.com/sa6iVje.png)
 
-You may want to know that dragging the application to desktop can fast create the shortcut. For other thing, one can refer  to the [official wiki page](https://wiki.xfce.org/) or do some Google.
+You may want to know that dragging the application to desktop can fast create the shortcut. For other tips/questions on using the xfce, one can refer to the [official wiki page](https://wiki.xfce.org/) or do some Google.
 
 #### Connection
 Assuming we are already under Princeton VPN service.
@@ -78,7 +78,7 @@ Assuming we are already under Princeton VPN service.
 
 ## Access System-wise Conda Environment
 
-We have installed [Anaconda](https://docs.anaconda.com/) for all users, and provide two basic environments for standard:\
+We have installed [Anaconda](https://docs.anaconda.com/) for all users, and provide two basic environments for standard:
 
 > **tf115** (`conda acitvate tf115`)
 > 
@@ -101,6 +101,7 @@ We provide some basic tips here for fast start-up. One can also find abundant re
 
 #### Q: How can I run python script with specific environment?
 
+0. If an account never use conda before, it first need to initialize conda via `conda init`
 1. Activate desired environment via: `conda activate my_environment_name`
 2. Run your script by `python my_script`
 
@@ -133,18 +134,29 @@ We suggest creating environments via yml file (`conda env create -f my_environme
 ###### addtional info: [Admin notes on HackMD](https://hackmd.io/@MingRuey/Sy3D6VAc_)
 ---
 
-### Tutorials on Mounting /proejcts/LAI in Tigressdata
+## Mounting Long-term Storage on HPC
 
-The [data storage of Princeton Research Computing]("https://researchcomputing.princeton.edu/support/knowledge-base/data-storage") has two areas for large storage supported with backup system. Our group acquire few TB space on /project/LAI. We show how to mount local drive to the space:
+The [data storage of Princeton Research Computing]("https://researchcomputing.princeton.edu/support/knowledge-base/data-storage") has areas for large storage supported with backup system. Our group acquire few TB space on /projects/LAI. We show how to mount local drive to the space:
 
 > **For Windows**
 > 
 > ...
 
 > **For Linux**
-> ...
+>
+> Case1: Mount it as **non-root** user
+>
+> -- Under construction --
 > 
-> https://wiki.ubuntu.com/MountWindowsSharesPermanently
+>
+> Case2: Mount it as **root**
+>
+> -- Under construction --
+> 
+> It's simpler to mount smb drive as root. Check out [**this**](https://wiki.ubuntu.com/MountWindowsSharesPermanently#Mount_password_protected_network_folders). We use Ubuntu as example here. For other distributions, the process is similar. Find tools like cifs-utils for communicating with CIFS/Samba net drive.
+>
+> 
+
 
 > **For Mac**
 >
