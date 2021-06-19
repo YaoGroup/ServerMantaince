@@ -17,11 +17,14 @@ fi
 unset __conda_setup
 ```
 3. Source the /etc/commonprofile for all possible shells:
-> /etc/environment (for dash)
-> 
-> /etc/profile, /etc/bash.bashrc (for login/non-login bash)
+> /etc/profile, /etc/bash.bashrc (for login dash, login/non-login bash)
 > 
 > /etc/zsh/zshrc (for zsh)
+
+:::warning
+The above does not works for non-login dash shell.
+:::
+
 5. Also add `export CONDA_AUTO_ACTIVATE_BASE=false` to commonprofile to prevent default base activation
 
 ## Environments
