@@ -1,7 +1,7 @@
 # Installation Note for Conda Environment
 
 1. Follow [this](https://docs.anaconda.com/anaconda/install/multi-user/), install conda to /opt/anaconda3, but do not grant permission to create environment.
-2. `conda init` is the official way to setup the PATH for users. However, it will modify users' init script (i.e. .bashrc or similar). We avoid that by manully adding result of `conda init` into the  /etc/commonprofile, and source it at /etc/profile & /etc/zsh/zprofile:
+2. `conda init` is the official way to setup the PATH for users. However, it will modify users' init script (i.e. .bashrc or similar). We avoid that by manully adding result of `conda init` into the  /etc/commonprofile.
 ```sh
 export CONDA_AUTO_ACTIVATE_BASE=false
 __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -16,7 +16,13 @@ else
 fi
 unset __conda_setup
 ```
-3. Also add `export CONDA_AUTO_ACTIVATE_BASE=false` to commonprofile to prevent default base activation
+3. Source the /etc/commonprofile for all possible shells:
+> /etc/environment (for dash)
+> 
+> /etc/profile, /etc/bash.bashrc (for login/non-login bash)
+> 
+> /etc/zsh/zshrc (for zsh)
+5. Also add `export CONDA_AUTO_ACTIVATE_BASE=false` to commonprofile to prevent default base activation
 
 ## Environments
 
