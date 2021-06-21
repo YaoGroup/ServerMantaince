@@ -36,7 +36,12 @@ Host YaoGroup
 
 * a. Install Microsoft [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) & [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
-* b. Select the desired Python interpreter
+
+* b. Open an Jupyter Notetook file, things should work.
+
+* c. Select the desired Python interpreter, at the top right of notebook
+
+![](https://i.imgur.com/6UeUM4W.png)
 
 :::success
 VSCode is smart. By selecting correct interpreter path, it will load the corresponding Conda environments.
@@ -48,4 +53,3 @@ VSCode is smart. By selecting correct interpreter path, it will load the corresp
 `/opt/anaconda3/envs/tf24/bin/python`
 :::
 
-* c. Open an Jupyter Notetook file, things should work.
