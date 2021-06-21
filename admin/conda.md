@@ -33,6 +33,7 @@ dependencies:
     - python=3.7.10
     - tensorflow-gpu=1.15.0
     - scipy=1.6.2
+    - ipykernel=5.3.4
 ```
 
 ### Environment File for TF24
@@ -44,4 +45,5 @@ dependencies:
     - python=3.8.10
     - tensorflow-gpu=2.4.1
     - scipy=1.6.2
+    - ipykernel=5.3.4
 ```
