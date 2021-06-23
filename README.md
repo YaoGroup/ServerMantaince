@@ -140,6 +140,23 @@ We may setup a web based jupyter notebook, so users can run notebooks directly v
 
 #### Q: How can I create my personal environment?
 
+Though non-admin users can not create named environements under /opt/anaconda3, they can still create custom environments under their other directories.
+
+We give the step-by-step example:
+
+1. Create and move into a target directory by `mkdir -p ~/Conda/my-env && cd ~/Conda/my-env`
+2. Create/Copy an environment file, you may find the example useful at the bottom of [this page](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag).
+3. Create an environment by `conda env create -f ./environment.yml -p .`
+4. To trigger the environemt, we have to specify the path: `conda env activate ~/Conda/my-env`
+
+Note: though environment file is recommended, but it's not the only way to create an environemnt with desired packages. Check out the [official document](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+
+#### Q: I want to add some packages into existing environments
+
+First of all, non-admin users can not change the standard environments under /opt/anaconda3/envs, as expected. They can only modify the environments they created.
+
+Though we recommend 
+
 By `conda env create ...`, one can create new environment, please refer to [official documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 We suggest creating environments via yml file (`conda env create -f my_environment_file.yml`), which make environment creation reproducible, we have some sample files [here](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
