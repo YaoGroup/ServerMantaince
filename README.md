@@ -78,15 +78,27 @@ Assuming we are already under Princeton VPN service.
 
 ## Access System-wise Conda Environment
 
+:::info
+An Conda environment is an isolated set of files/programs to execute Python scripts. By isolated, it means that **the environment works independenttly from any other Python interpreter**, including the system default ones. So users can install Python packages specifically for an environment, without affecting any other Python interpreter. 
+
+It is essential for controlling the packages for running Python scripts. Without this, we'll encounter many "Why does the script work on my machine, but not yours?" problems.
+:::
+
+All files/programs of an Conda environment is under a single directory. For example, the environment we built for running TensorFlow 2.x codes are under /opt/anaconda3/envs/tf24. The most important programs under the environment directory are the Python interpreter (a program to execture python script, under /opt/anaconda3/envs/tf24/bin) and a set of python packages.
+
 We have installed [Anaconda](https://docs.anaconda.com/) for all users, and provide two basic environments for standard:
 
 > **tf115** (`conda acitvate tf115`)
 > 
-> the standard environment for tensorflow 1.X codes.
+> the standard environment for TensorFlow 1.X codes.
 
 > **tf24** (`conda acitvate tf24`)
 > 
-> the standard environment for tensorflow 2.X codes.
+> the standard environment for TensorFlow 2.X codes.
+
+> **ex-tf24 (`conda activate ex-tf24`)
+> 
+> An extended version of the above tf24 environemnt, with packages like tensorflow_probability .etc
 
 :::info
 Both two environemnts are still minimal,
@@ -153,12 +165,13 @@ Note: though environment file is recommended, but it's not the only way to creat
 
 #### Q: I want to add some packages into existing environments
 
-First of all, non-admin users can not change the standard environments under /opt/anaconda3/envs, as expected. They can only modify the environments they created.
+Though we recommend to create an environment file, this approach can be too restricted when experimenting with packages.
 
-Though we recommend 
+To add packges into existing environments, instead of create new ones:
+1. Activate the target environment (`conda activate ~/Conda/my-env`)
+2. Run `coda install my-target-package`, then the packge is added into the target environment.
 
-By `conda env create ...`, one can create new environment, please refer to [official documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
-We suggest creating environments via yml file (`conda env create -f my_environment_file.yml`), which make environment creation reproducible, we have some sample files [here](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+Note: non-admin users can not change the standard environments under /opt/anaconda3/envs, as expected.
 
 
 ###### addtional info: [Admin notes on HackMD](https://hackmd.io/@MingRuey/Sy3D6VAc_)
