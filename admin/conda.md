@@ -29,11 +29,14 @@ tf15/environement.yml -p /opt/anaconda3/envs/tf115`
 name: tf115
 channels:
     - defaults
+    - conda-forge
 dependencies:
     - python=3.7.10
     - tensorflow-gpu=1.15.0
     - scipy=1.6.2
     - ipykernel=5.3.4
+    - matplotlib=3.4.2
+    - seaborn=0.9.0
 ```
 
 ### Environment File for TF24
@@ -46,4 +49,21 @@ dependencies:
     - tensorflow-gpu=2.4.1
     - scipy=1.6.2
     - ipykernel=5.3.4
+```
+
+### Environment File for EX-TF24
+```
+name: extended_tf24
+channels:
+    - defaults
+    - conda-forge
+dependencies:
+    - python=3.8.10
+    - tensorflow-gpu=2.4.1
+    - scipy=1.6.2
+    - ipykernel=5.3.4
+    - tensorflow-probability=0.12.2
+    - matplotlib=3.4.2
+    - pydoe=0.3.8
+    - gast=0.3.3
 ```
