@@ -32,7 +32,7 @@ If it's your first time accessing the domain on the device, it will ask you to a
 
 #### Q: How can I avoid typing password each time?
 
-One can use terminals like [Mobaxterm](https://mobaxterm.mobatek.net/), which can remember the password locally.
+One can use terminals like [Mobaxterm](https://mobaxterm.mobatek.net/) or [Putty](https://www.putty.org/), which can remember the password locally.
 
 One can also use [Key-Authencation](https://en.wikipedia.org/wiki/Key_authentication) based ssh login.
 It involves mainly three steps:
@@ -101,7 +101,7 @@ We have installed [Anaconda](https://docs.anaconda.com/) for all users, and prov
 > An extended version of the above tf24 environemnt, with packages like tensorflow_probability .etc
 
 :::info
-Both two environemnts are still minimal,
+These environemnts are still minimal,
 we plan to add more packages/settings into these via user reflection. So please let Ray/Yao knows what's missing and should be added.
 :::
 
@@ -125,7 +125,7 @@ It's somewhat tricker, and no single best way to achieve this. List some solutio
 
 [Step by Step Guide for Visual Studio Code](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g)
 
-This is a more complex approach, but we still recommend it because experience is better. Choose an editor like [Visual Studio Code](https://code.visualstudio.com/) or [PyCharm](https://www.jetbrains.com/pycharm/). Run the jupyter notebook within the editor. The most important settings of this approach include:
+This is a more complex approach, but we still recommend it because experience is better. Choose an editor like [Visual Studio Code](https://code.visualstudio.com/) or [PyCharm (professional version require, though)](https://www.jetbrains.com/pycharm/). Run the jupyter notebook within the editor. The most important settings of this approach include:
 
 * a. Make edtior into **remote development** mode, which means, the editor are able to run Python files that are located at remote, using also an interpreter on remote machine. This may require to install some extension with editor.
    > For more information:
@@ -169,7 +169,7 @@ Though we recommend to create an environment file, this approach can be too rest
 
 To add packges into existing environments, instead of create new ones:
 1. Activate the target environment (`conda activate ~/Conda/my-env`)
-2. Run `coda install my-target-package`, then the packge is added into the target environment.
+2. Run `conda install my-target-package`, then the packge is added into the target environment.
 
 Note: non-admin users can not change the standard environments under /opt/anaconda3/envs, as expected.
 
@@ -179,30 +179,53 @@ Note: non-admin users can not change the standard environments under /opt/anacon
 
 ## Mounting Long-term Storage on HPC
 
-The [data storage of Princeton Research Computing]("https://researchcomputing.princeton.edu/support/knowledge-base/data-storage") has areas for large storage supported with backup system. Our group acquire few TB space on /projects/LAI. We show how to mount local drive to the space:
+The [data storage of Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/data-storage) has areas for large storage supported with backup system. Our group acquire few TB space on /projects/LAI. 
+
+There are basically two different protocols to connect directly to the storage space on local machine **SMB** and **SSH**.
+
+Sadly, [SMB service](https://researchcomputing.princeton.edu/support/knowledge-base/tigress-cifs) are manully created, on a per-user basis, by PICSciE. One have to write an e-mail to [PICSciE](cses@princeton.edu) to request the service (by stating that "I want my account <NetID> access to mount /projects/LAI as SMB drive").
+
+
+We show how to mount local drive to the space on SSH and/or SMB:
+
+> **For Linux**
+> 
+> We can mount the folder via SSH:
+> 
+> `mkdir ~/tigressdata`\
+> `sshfs <NetID>@della.princeton.edu:/projects/LAI ~/tigressdata`
+> 
+> Replace ~/tigressdata with the directory you want to mount on. And the NetID is your Princeton ID, not the one on this workstation.
+
+> **For Mac**
+> :::warning
+> the following section is not tested
+> :::
+> Open a terminal and install the followings using brew:
+> `brew cask install osxfuse`\
+`brew install sshfs`
+> 
+> And following the same instruction on Linux section should work.
+>
+> Mount /projects/LAI using SMB can check out [this](https://ag.montana.edu/it/support/smb-macs.html). Use `smb://tigress-cifs.princeton.edu/fileset-lai
+` as path, and `PRINCETON\<NetID>` as username and your password for princeton 
 
 > **For Windows**
 > 
-> ...
+> Windows has to manually install mores for mounting directory via SSH. 
+> [Check out this](https://github.com/billziss-gh/sshfs-win)
+>
+> On the other hand, SMB is much easier (it's native for Windows).
+>
+> Once it's created, it is much easier.
+> Open PC, click "Map Network Drive".
+>
+> Select the whatever Drive (Y:, Z:, ...) you like, and type the following into the Folder field: `//tigress-cifs.princeton.edu/fileset-lai`
+> ![](https://i.imgur.com/7eoskcn.png)
+>
+> For credentials, type the followings:
+> account: PRINCETON\\<NetID>
+> password: <Your Princeton Net Password></Your>
+> ![](https://i.imgur.com/0s6h5Iq.png)
 
-> **For Linux**
->
-> Case1: Mount it as **non-root** user
->
-> -- Under construction --
-> 
->
-> Case2: Mount it as **root**
->
-> -- Under construction --
-> 
-> It's simpler to mount smb drive as root. Check out [**this**](https://wiki.ubuntu.com/MountWindowsSharesPermanently#Mount_password_protected_network_folders). We use Ubuntu as example here. For other distributions, the process is similar. Find tools like cifs-utils for communicating with CIFS/Samba net drive.
->
-> 
-
-
-> **For Mac**
->
-> -- Under construction --
-
-There is also [a page on Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/tigress-cifs) on how to mount on various spaces on HPC clusters.
+After mounting, accessing the directory is equavalent to access the /projects/LAI on Princeton tigressdata system. So the files copied/written into it automatically share the benefit of tigressdata, like scheduled backup .etc
