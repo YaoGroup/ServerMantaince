@@ -183,7 +183,9 @@ The [data storage of Princeton Research Computing](https://researchcomputing.pri
 
 There are basically two different protocols to connect directly to the storage space on local machine **SMB** and **SSH**.
 
-Sadly, [SMB service](https://researchcomputing.princeton.edu/support/knowledge-base/tigress-cifs) are manully created, on a per-user basis, by PICSciE. One have to write an e-mail to [PICSciE](cses@princeton.edu) to request the service (by stating that "I want my account <NetID> access to mount /projects/LAI as SMB drive").
+:::success
+User must be inside Princeton VPN for all the followings methods. Also the login
+:::
 
 
 We show how to mount local drive to the space on SSH and/or SMB:
@@ -198,34 +200,37 @@ We show how to mount local drive to the space on SSH and/or SMB:
 > Replace ~/tigressdata with the directory you want to mount on. And the NetID is your Princeton ID, not the one on this workstation.
 
 > **For Mac**
-> :::warning
-> the following section is not tested
-> :::
-> Open a terminal and install the followings using brew:
-> `brew cask install osxfuse`\
-`brew install sshfs`
 > 
-> And following the same instruction on Linux section should work.
+> ----- Using SSH -----
+> 
+> To use SSH protocol to mount the space. Open a terminal and install the followings using brew:
 >
-> Mount /projects/LAI using SMB can check out [this](https://ag.montana.edu/it/support/smb-macs.html). Use `smb://tigress-cifs.princeton.edu/fileset-lai
-` as path, and `PRINCETON\<NetID>` as username and your password for princeton 
+>`brew cask install osxfuse`\
+`brew install sshfs`
+>
+> And following the same instruction on **Linux** section should work.
+>
+> ----- Using SMB -----
+>
+> Mount /projects/LAI using SMB -- check out [this](https://ag.montana.edu/it/support/smb-macs.html). Or you prefer [do it in commnad line](https://gist.github.com/natritmeyer/6621231)
+> 
+> Follow the tutorial, while use `smb://tigress-cifs.princeton.edu/fileset-lai
+` as path, `PRINCETON\<NetID>` as username and password of your Princeton account.
 
 > **For Windows**
 > 
 > Windows has to manually install mores for mounting directory via SSH. 
 > [Check out this](https://github.com/billziss-gh/sshfs-win)
 >
-> On the other hand, SMB is much easier (it's native for Windows).
+> On the other hand, SMB is much easier (it's native for Windows). We recommend using **SMB** on Windows. Open PC, click the "computer" at top-left, then click "Map Network Drive".
 >
-> Once it's created, it is much easier.
-> Open PC, click "Map Network Drive".
->
-> Select the whatever Drive (Y:, Z:, ...) you like, and type the following into the Folder field: `//tigress-cifs.princeton.edu/fileset-lai`
+> Select the whatever Drive (Y:, Z:, ...) you like, and type the following into the Folder field:\
+> `\\tigress-cifs.princeton.edu\fileset-lai`
 > ![](https://i.imgur.com/7eoskcn.png)
 >
-> For credentials, type the followings:
-> account: PRINCETON\\<NetID>
-> password: <Your Princeton Net Password></Your>
+> For credentials, type the followings:\
+> account: PRINCETON\\<NetID>\
+> password: your password for Princeton account
 > ![](https://i.imgur.com/0s6h5Iq.png)
 
 After mounting, accessing the directory is equavalent to access the /projects/LAI on Princeton tigressdata system. So the files copied/written into it automatically share the benefit of tigressdata, like scheduled backup .etc
