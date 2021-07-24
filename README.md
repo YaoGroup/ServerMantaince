@@ -66,9 +66,7 @@ Assuming we are already under Princeton VPN service.
 > ![](https://i.imgur.com/3k3foQu.png)
 ---
 > **For Mac**
-> :::warning
-> This section is NOT tested yet
-> :::
+>
 > Download [Microsoft Remote Desktop for Mac](https://apps.apple.com/tw/app/microsoft-remote-desktop/id1295203466?mt=12), then follow the steps in Windows > section.
 
 
@@ -96,7 +94,7 @@ We have installed [Anaconda](https://docs.anaconda.com/) for all users, and prov
 > 
 > the standard environment for TensorFlow 2.X codes.
 
-> **ex-tf24 (`conda activate ex-tf24`)
+> **ex-tf24** (`conda activate ex-tf24`)
 > 
 > An extended version of the above tf24 environemnt, with packages like tensorflow_probability .etc
 
@@ -179,12 +177,12 @@ Note: non-admin users can not change the standard environments under /opt/anacon
 
 ## Mounting Long-term Storage on HPC
 
-The [data storage of Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/data-storage) has areas for large storage supported with backup system. Our group acquire few TB space on /projects/LAI. 
+The [data storage of Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/data-storage) has areas for large storage supported with backup system. Our group acquires few TB space on /projects/LAI. 
 
 There are basically two different protocols to connect directly to the storage space on local machine **SMB** and **SSH**.
 
 :::success
-User must be inside Princeton VPN for all the followings methods. Also the login
+User must be **inside Princeton VPN** for all the followings methods. Also the **login account and password is Princeton Net ID (with some variation for SMB, see below)** not workstation account.
 :::
 
 
@@ -200,7 +198,13 @@ We show how to mount local drive to the space on SSH and/or SMB:
 > Replace ~/tigressdata with the directory you want to mount on. And the NetID is your Princeton ID, not the one on this workstation.
 
 > **For Mac**
+> ----- Using SMB (Easier, Recommended)-----
+>
+> Mount /projects/LAI using SMB -- check out [this](https://ag.montana.edu/it/support/smb-macs.html). Or you prefer [do it in commnad line](https://gist.github.com/natritmeyer/6621231)
 > 
+> Follow the tutorial, while use `smb://tigress-cifs.princeton.edu/fileset-lai
+` as path, `PRINCETON\<NetID>` as username and password of your Princeton account.
+>
 > ----- Using SSH -----
 > 
 > To use SSH protocol to mount the space. Open a terminal and install the followings using brew:
@@ -209,20 +213,13 @@ We show how to mount local drive to the space on SSH and/or SMB:
 `brew install sshfs`
 >
 > And following the same instruction on **Linux** section should work.
->
-> ----- Using SMB -----
->
-> Mount /projects/LAI using SMB -- check out [this](https://ag.montana.edu/it/support/smb-macs.html). Or you prefer [do it in commnad line](https://gist.github.com/natritmeyer/6621231)
-> 
-> Follow the tutorial, while use `smb://tigress-cifs.princeton.edu/fileset-lai
-` as path, `PRINCETON\<NetID>` as username and password of your Princeton account.
 
 > **For Windows**
 > 
 > Windows has to manually install mores for mounting directory via SSH. 
 > [Check out this](https://github.com/billziss-gh/sshfs-win)
 >
-> On the other hand, SMB is much easier (it's native for Windows). We recommend using **SMB** on Windows. Open PC, click the "computer" at top-left, then click "Map Network Drive".
+> On the other hand, SMB is much easier (it's native for Windows). We recommend using **SMB** on Windows. Open "PC", click the "computer" at top-left, then click "Map Network Drive".
 >
 > Select the whatever Drive (Y:, Z:, ...) you like, and type the following into the Folder field:\
 > `\\tigress-cifs.princeton.edu\fileset-lai`
