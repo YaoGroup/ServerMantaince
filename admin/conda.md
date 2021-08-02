@@ -41,18 +41,6 @@ dependencies:
 
 ### Environment File for TF24
 ```xml
-name: tf24
-channels:
-    - defaults
-dependencies:
-    - python=3.8.10
-    - tensorflow-gpu=2.4.1
-    - scipy=1.6.2
-    - ipykernel=5.3.4
-```
-
-### Environment File for EX-TF24
-```
 name: extended_tf24
 channels:
     - defaults
