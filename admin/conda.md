@@ -41,17 +41,15 @@ dependencies:
 
 ### Environment File for TF24
 ```xml
-name: extended_tf24
+name: tensorflow-2.4
 channels:
     - defaults
     - conda-forge
 dependencies:
     - python=3.8.10
-    - tensorflow-gpu=2.4.1
-    - scipy=1.6.2
-    - ipykernel=5.3.4
+    - defaults::tensorflow-gpu=2.4.1
+    - defaults::scipy=1.6.2
+    - defaults::ipykernel=5.3.4
+    - defaults::matplotlib=3.4.2
     - tensorflow-probability=0.12.2
-    - matplotlib=3.4.2
     - pydoe=0.3.8
-    - gast=0.3.3
-```
