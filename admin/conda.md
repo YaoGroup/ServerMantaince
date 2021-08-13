@@ -34,9 +34,11 @@ dependencies:
     - python=3.7.10
     - tensorflow-gpu=1.15.0
     - scipy=1.6.2
+    - pydoe=0.3.8
     - ipykernel=5.3.4
     - matplotlib=3.4.2
     - seaborn=0.9.0
+    - jupyter=1.0.0
 ```
 
 ### Environment File for TF24
@@ -53,3 +55,5 @@ dependencies:
     - defaults::matplotlib=3.4.2
     - tensorflow-probability=0.12.2
     - pydoe=0.3.8
+    - jupyter=1.0.0
+```
