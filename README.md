@@ -1,4 +1,4 @@
-# Yao Group Server Infrastructure Note
+# Lai Group Server Infrastructure Note
 
 [View it on HackMd](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
 
