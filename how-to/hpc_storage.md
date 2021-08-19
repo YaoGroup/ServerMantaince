@@ -1,4 +1,4 @@
-## Using Long-term Storage on HPC
+# Using Long-term Storage on HPC
 === A reference for [Yao Group Server Infrastructure Note](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w) ===
 
 The [data storage of Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/data-storage) has areas for large storage supported with backup system. Our group acquires few TB space on /projects/LAI. 
