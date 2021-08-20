@@ -25,7 +25,14 @@ It's easy. Just open any terminal like cmd. Then type and enter to execute:
 
 `ssh <your_account_name>@yaolab.princeton.edu`
 
-If it's your first time accessing the domain on the device, it will ask you to add the above domain into 'known hosts', type **Yes**. Then it will ask for password, type it, then you should successfully login into the server.
+Then it will ask for password, type it, then you should successfully login into the server.
+
+:::success
+If it's your first time accessing the domain on the device, it will ask you to add the above domain into 'known hosts', type `Yes`. 
+
+You should **change your password immediately** after your first login.\
+Command `passwd` can change your password.
+:::
 
 #### Q: How can I avoid typing password each time?
 
@@ -41,7 +48,8 @@ It involves mainly three steps:
         - The file ida_rsa.pub is **public key**, we shall add the content of this file onto server
 2. Add public key of key-pair to the allowed identities list on target device (i.e. the server)
     - Open the file `/home/user-name/.ssh/authorized_keys`. Create the file, or even the .ssh directory if they do not exist.
-        - Execute `mkdir "~/.ssh" && touch ~/.ssh/authorized_keys` can create the file and the directory
+        - Execute the following to create the file and the directory\
+          `mkdir "~/.ssh" && touch ~/.ssh/authorized_keys`
     - Edit the file by copy the content of previous **public key file (ida_rsa.pub)** into the the authorized_keys.
         - Though very long, all the content of public key file is only single line.
         - One can add as many public keys into the autorized_keys file. So the file contains multiple lines, one line per public key. This make multiple machines regeistered on the the server.
@@ -50,7 +58,7 @@ It involves mainly three steps:
     - If it's not the case, it could be that your `ssh` command is not using the key.
         - Fix that by execute the followings:\
         `eval $(ssh-agent)`\
-        `ssh-add /home/user-name/.ssh/ida_rsa`  (use command `ssh-add` onto your private key file)
+        `ssh-add /home/user-name/.ssh/ida_rsa`  (use `ssh-add` onto your private key file)
 
 
 
