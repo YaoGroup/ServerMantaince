@@ -1,5 +1,5 @@
 # Remote Access to the Server
-=== A reference for [Yao Group Server Infrastructure Note](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
+=== A reference for [Yao Group Server Infrastructure Note](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w) ===
 
 
 The IP address of the server is *yaolab.princeton.edu*.
@@ -29,15 +29,30 @@ If it's your first time accessing the domain on the device, it will ask you to a
 
 #### Q: How can I avoid typing password each time?
 
-One can use terminals like [Mobaxterm](https://mobaxterm.mobatek.net/) or [Putty](https://www.putty.org/), which can remember the password locally.
+One can use terminals like [Mobaxterm](https://mobaxterm.mobatek.net/)(for Windows), or [iTerm2](https://iterm2.com/)(for Mac) which can remember the password locally.
 
 One can also use [Key-Authencation](https://en.wikipedia.org/wiki/Key_authentication) based ssh login.
 It involves mainly three steps:
 1. Generate a key-pair on local device
+    - Execute `ssh-keygen -t rsa` in terminal
+        - For the file name, one can just use the default (like /home/user-name/.ssh/id_rsa)
+        - Passphrase can remain empty
+        - The file id_rsa is the **private key**, **DO NOT** reveal it to anyone
+        - The file ida_rsa.pub is **public key**, we shall add the content of this file onto server
 2. Add public key of key-pair to the allowed identities list on target device (i.e. the server)
-3. Add private key of key-pair to be the idendity of local device.
+    - Open the file `/home/user-name/.ssh/authorized_keys`. Create the file, or even the .ssh directory if they do not exist.
+        - Execute `mkdir "~/.ssh" && touch ~/.ssh/authorized_keys` can create the file and the directory
+    - Edit the file by copy the content of previous **public key file (ida_rsa.pub)** into the the authorized_keys.
+        - Though very long, all the content of public key file is only single line.
+        - One can add as many public keys into the autorized_keys file. So the file contains multiple lines, one line per public key. This make multiple machines regeistered on the the server.
 
-Refer [this page](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) for how to conduct those steps exactly. After the above steps, the local device is somewhat "regesitered" on the server, and ssh login no longer requires password.
+3. After step 2, one should able to conduct the previous ssh login, without typing any password.
+    - If it's not the case, it could be that your `ssh` command is not using the key.
+        - Fix that by execute the followings:\
+        `eval $(ssh-agent)`\
+        `ssh-add /home/user-name/.ssh/ida_rsa`  (use command `ssh-add` onto your private key file)
+
+
 
 ---
 ### Tutorials on Microsoft RDP Access
