@@ -47,26 +47,14 @@ It's somewhat tricker, and no single best way to achieve this. List some solutio
 
 ##### --- Option 1. Run Notebook with Editor
 
+This is a more complex approach, but we still recommend it because experience is better. [Visual Studio Code (VSCode)](https://code.visualstudio.com/) is great in this regard.
+[PyCharm ](https://www.jetbrains.com/pycharm/) could do smiliar things, but one need professional version though. 
+
+We have a tutorial for settings this up using VSCode:
+
 [Step by Step Guide for Visual Studio Code](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g)
 
-This is a more complex approach, but we still recommend it because experience is better. Choose an editor like [Visual Studio Code](https://code.visualstudio.com/) or [PyCharm (professional version require, though)](https://www.jetbrains.com/pycharm/). Run the jupyter notebook within the editor. The most important settings of this approach include:
-
-* a. Make edtior into **remote development** mode, which means, the editor are able to run Python files that are located at remote, using also an interpreter on remote machine. This may require to install some extension with editor.
-   > For more information:
-   > 
-   > VSCode, check out [this](https://code.visualstudio.com/docs/remote/remote-overview)
-   > 
-   > PyCharm checkout [this](https://www.jetbrains.com/help/pycharm/creating-a-remote-server-configuration.html)
-
-* b. Make editor support exploring/executing jupyter notebook, this may require to **install some extension** with editor.
-   > For more information:
-   > 
-   > VSCode, check out [this](https://code.visualstudio.com/docs/python/jupyter-support)
-   > 
-   > PyCharm checkout [this](https://www.jetbrains.com/help/pycharm/jupyter-notebook-support.html)
-
-* c. Make sure editor uses **correct Python interpreter** to run notebooks, for example, select interpreter to `/opt/anaconda3/envs/tf24/bin/python3` will make the notebook running with tf24 conda environment.
- 
+After the setup, editing and running python code under desired environment on server, jupyter notebook or not, can become convinient.
 
 ##### --- Option 2. [Convert notebook to python script](https://stackoverflow.com/questions/35545402/how-to-run-an-ipynb-jupyter-notebook-from-terminal) 
 and run it. For example, run`jupyter nbconvert --execute my_notebook.ipynb`
