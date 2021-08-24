@@ -11,7 +11,7 @@ This note serves the following purpose:
 The note is the main page and contains links to additional references. The main page aims at onboard new comber, so they can grasp the essential concepts and start using the workstation ASAP. Other references teach one how to achieve specific things in a step-by-step way.
 
 :::info
-Before you started, check you already get an account and a reset password for the workstation.
+Before you started, check you already get an account and a password for the workstation.
 And if you are outside Princeton, make sure you are using VPN.
 
 $\small\text{^Blue boxes like this one include essential information. Make sure you read and understand.}$
@@ -34,7 +34,7 @@ Then it will ask for the password, type the one you get from Yao, and then succe
 
 ## A. The Basics
 
-We start by introducing the basic concept and workflow for using the workstation. After reading through A-1 to A-3, one should be able to start working on the workstation. We hope the tutorial is concise, so everyone quickly starts enjoying their research work while following the best practice.
+We start by introducing the basic concept and workflow for using the workstation. After reading through A-1 to A-3, one should be able to start working on the workstation. We hope the tutorial is concise, so everyone quickly enjoys their research work while following the best practice.
 
 ### A-1 Embrace the Command Line
 
@@ -160,11 +160,24 @@ or\
 `mkdir -p /a/series/of/directory/`
 :::
 
-:::warning
+:::info
 **Edit a Text File**\
 `vim <target for edit>`
-<br></br>
-Tougher. Under construction.
+
+If the target does not exist, it creates a new file.
+\
+\
+It worth writing another book for using `vim`. For now, we only show how to start editting and quit the program.
+\
+\
+**Start Editting**
+
+Click `i' and check there is a text `-- INSERT --` at the bottom left. You'll be in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did, without convenient features like "undo" & "copy-paste".
+\
+\
+**Save and Quit**
+
+Click `esc` when you finish. It will leave insert mode. To save and quit, type a colon `:`, so that there is a `:` at the bottom left. Then type `wq` and press `enter`. It saves the content and sends you back to the command line.
 :::
 
 :::info
@@ -364,7 +377,7 @@ or if first time uploading a branch
 `git push --set-upstream origin <branch>`
 \
 \
-Git needs to know how to **map a local branch to a remote branch** for uploading. It's a good practice to make the name of the local branch exactly the same as a remote one.
+Git needs to know how to **map a local branch to a remote branch** for uploading. It's a good practice to make the name of the local branch the same as a remote one.
 :::
 
 :::info
