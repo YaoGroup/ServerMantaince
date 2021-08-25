@@ -56,4 +56,27 @@ dependencies:
     - tensorflow-probability=0.12.2
     - pydoe=0.3.8
     - jupyter=1.0.0
+    - pytest=6.2.4
+```
+
+
+### Environment File for TF114
+
+For running [Razzi's PINN project](https://github.com/maziarraissi/PINNs).
+It uses tf.contrib and thus too old for Tensorflow 1.15
+
+```xml
+name: tf114
+channels:
+    - defaults
+    - conda-forge
+dependencies:
+    - python=3.7.10
+    - tensorflow-gpu=1.14.0
+    - scipy=1.6.2
+    - pydoe=0.3.8
+    - ipykernel=5.3.4
+    - matplotlib=3.4.2
+    - seaborn=0.9.0
+    - jupyter=1.0.0
 ```
