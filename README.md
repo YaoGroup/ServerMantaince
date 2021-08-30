@@ -1,4 +1,4 @@
-Yao Group Workstation Infrastructure Note
+# Yao Group Workstation Infrastructure Note
 ---
 
 [View it on HackMD](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
@@ -47,10 +47,10 @@ After login, you shall see:
 ![](https://i.imgur.com/3BcqlE3.png)
 
 :::info
-After the unimportant welcome message, there are two important elements on the screen.
+After the welcome message, there are two important elements on the screen.
 
-* **username**: The `mc4536` indicates my user name. For you, it will be your account name.
-* **Current Directory**: The text between the colon `:` and number sign `#`, in this case, it's the tilde `~`, indicated **where you are** on the computer (the formal name for this is *current working directory*).
+* **User Name**: The `mc4536` indicates my user name. For you, it will be your account name.
+* **Location**: The text between the colon `:` and number sign `#`, in this case, it's the tilde `~`, indicated **where you are** on the computer.
 
 $\small\text{^On a different machine, the colon or the number sign can become something else}$
 :::
@@ -64,7 +64,7 @@ There is no apparent difference between a file and a directory. For example, giv
 ![](https://i.imgur.com/aNrTKnV.png)\
 [Photo credit: TecMint](https://www.tecmint.com/linux-directory-structure-and-important-files-paths-explained/)
 
-When you are on the workstation, at any time, you must be inside one of the directories, which is called **current working directory**. By default, after login, you are on a directory tilde `~`. Tilde `~` is a shortened form for the directory `/home/<your user name>`; this is different for every user. For example, for me, `~` means `/home/mc4536` actually.
+When you are on the workstation, at any time, you must be inside one of the directories, which is called **current working directory**. By default, after login, you are at a directory tilde `~`. Tilde `~` is a shortened form for the directory `/home/<your user name>`; this is different for every user. For example, for me, `~` means `/home/mc4536` actually.
 
 `pwd` displays where you are. It displays the full path instead of using abbreviated tilde `~`:\
 ![](https://i.imgur.com/AmFe1Ou.png)
@@ -172,7 +172,7 @@ It worth writing another book for using `vim`. For now, we only show how to star
 \
 **Start Editting**
 
-Click `i' and check there is a text `-- INSERT --` at the bottom left. You'll be in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did, without convenient features like "undo" & "copy-paste".
+Click `i` and check there is a text `-- INSERT --` at the bottom left. If so, you are in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did. It's a plain mode without convenient features you used to have, for example "undo" & "copy-paste".
 \
 \
 **Save and Quit**
@@ -192,209 +192,180 @@ Download from the workstation to the local PC -- just reverse the arguments of u
 
 By combining the above commands, you can conduct all essentials on the workstation.
 
-### A-2 Version Control Tool (Git)
+### A-2 Access the Code of Our Group
 
-Version control means managing the changes of files in an organized way. Version control tool is the software to aid the process.
+#### a-2-1 Access the Shared Code from GitHub
 
-In this short tutorial, we'll introduce concepts of version control and the primary usage of Git. Going through the tutorial, you will be able to properly manage code using the essential features of Git.
+We use [GitHub](https://github.com/) as the platform for collaboratively working on projects. We'll teach you a simple way to use it for sharing the works with others.
 
-Before we start, you need to create an empty directory and transform it into a Git-managed project. I use `~/Document/git-test` as an example.
+:::info
+Register an account for GitHub.
 
-Inside the directory, execute: `git init
-
-The command will create a hidden directory `.git` under the current working directory:
-![](https://i.imgur.com/S5D9lcD.png)
-
-Git will monitor the files under the directory. The directory is now the place for you to start working. Put your work under the directory and use Git to control it.
-
-:::success
-[Our recording for a teaching session](https://princeton.zoom.us/rec/share/G-pdNxvmzI7aAewSKjSCjPxXjDyNjiLYVEGzMdUjrSgxr4tzE0gxZ6pQgCoIK1ZQ.D5mzb9Nu_jWZZBLU) may help you also.
+Contact Yao to give you the permission to access the code.
 :::
 
-$\small\text{^Git stores almost everything it needs under the .git folder.}$
-$\small\text{Be careful not to remove or modify anything inside it if you don't know how it works internally.}$
+#### 
 
-#### a-2.1 Your First Commit
+GitHub has prohibited simple password since Aug 2021. We need to setup the authentication. It seems cumbersome, but saves you from typing password everytime. Make sure you follow the instructions:  
 
+:::info
+**Setup the Autehntication of GitHub**
+
+- [<u>"Generating a new SSH key"</u>](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) section to create and add keys. 
+- [<u>"Adding your ssh key to the ssh aggnet"</u>]( https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) section
+- Copy the content of **id_ed25519.pub** and add it as key to your GitHub account.
+    - Execute `cat id_ed25519.pub` display the content of file in terminal
+    - Click **New SSH Key** at [<u>SSH and GPG keys</u>](https://github.com/settings/keys), and copy the content into the **Key** field. 
+    - Type anything you like into the **Title** field, for example "Yao Group Workstation".
+:::
+
+Now we are ready to use GitHub. The tool we are using for code management is **Git**. GitHub is tightly intergrated with Git. We'll use the [Toy Example](https://github.com/YaoGroup/ToyExample) code as the example.
+
+Switch your current working directory to a place you like, and start by exectute:
+
+`git clone git@github.com:YaoGroup/ToyExample.git`
+
+Git will download the code from the GitHub to a (new) directory *ToyExample* under the current working directory.
+
+#### a-2-2 Upload Your Changes
+
+`cd` into the *ToyExample* directory.
+
+Try using `vim` or other methods you like to modify the README.md, by adding a line below the message section. For example, Ray add his message
+`Ray: Welcome! Hope the tutorials are clear and helpful!`
+
+![](https://i.imgur.com/FYqQZ4v.png)
+
+Save the changes, and check your changes by
+
+`git status`
+
+It will display that the README.md has been changed. Now we need to use Git to create a formal save point of the change.
+
+:::info
 The fundamental element of a version control system is a save point. Savepoint means a snapshot of what files are like at the time of saving. In Git, we call a savepoint **commit**. Also, when we use commit as a verb, it means storing changes into a commit.
-
-:::info
-Using Git is essentially creating a series of commits, one after one, to form a history of commits. Git call history of commits **repository**.
 :::
 
-Now we are going to add the first point of our new history.
-We create a file called *my-first-file.py*, with only a simple line "Hello World!":
-![](https://i.imgur.com/lehHrPj.png)
+Commit your change by:
+- Select the change to commit by `git add README.md`
+- `git commit`, which will pop-up a vim to create a summary of your change. Here we use `Create first change for <your name>`. Save the summary as  saving a file.
+![](https://i.imgur.com/XdfgQw4.png)
+- Upload your change by `git push`
 
-We now check the status of our repository by `git status
-![](https://i.imgur.com/YUIO8jG.png)
+Now, by refreshing [the project page](https://github.com/YaoGroup/ToyExample), you shall see your new message at the front page. 
 
-The message is self-explaining. It says that there is a new file *my-first-file.py* not tracked by Git. The first step of committing is to add the file(s) you want to commit. Do it by `git add my-first-file.py`:
-![](https://i.imgur.com/HQy5yVV.png)
-
-Now it says we are ready to commit a change, which is the new file we created.\
-We commit it by `git commit`. It will open an editor for you to type some concise and meaningful message. Our message here is `The very first commit`.
-
-Then we can check the history of commits by `git log`. It says that we have a commit, with the ID `4e0846d1e2fd8dc54b17c734f8df6b2863106051` and message `The very first commit`.
-![](https://i.imgur.com/evEM2zW.png)
+#### a-2-3 Download Changes from Others
+You may not be the only one working on the project. When someone uploaded his changes, you can download his changes by execute `git pull` under the project directory.
 
 :::success
-**Takeaway**
-* `git status` is the main way to examine the un-committed changes.
-* `git add` is for gathering the changes for an upcoming action to commit.
-* `git commit` creates a commit of all the gathered changes and adds the commit into history.
-* `git log` are the primary way to examine the history of commits.
-:::
 
-#### a-2.2 Travel in the History of Code
-
-We modify the `my-first-file.py` to see how the future changes create a history.
-First, we modify the file by:
-* Remove the `Hello World` line
-* Add a new line `print("Hello world!")`
-* Use `git status to check the changes
-* Use `git diff` to view the changes line by line
-![](https://i.imgur.com/XEYXmOE.png)
-
-From the outputs of `git status, we see that Git knows there are changes for a tracked file.
-Use `git diff` to display the (uncommitted) changes. The sign - means the lines are deleted, and sign + means the lines are added:
-```
--Hello World!
-+print("Hello World!")
-```
-
-We then add & commit the changes and view the history. One can see that there are two commits: the first one we added in [a-2.1](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w?view#a-21-Your-First-Commit), and after which is the `print("Hello World")` one.
-![](https://i.imgur.com/48zh7L5.png)
-
-Using `git log --online --graph`, one can display the commit history concisely. The `HEAD` is where we are currently.
-![](https://i.imgur.com/dDRCnNO.png)
-
-We could use `git show` to display the changes of the last commit:
-![](https://i.imgur.com/BgBYO34.png)
-
-Now we teach you how to do time travel -- go back to the state of a commit in history:\
-`git checkout 4e0846`
-
-Note that `4e0846` is the first few digits of the ID of the first commit. Your ID will be different than mine.
-Now we check the content of the file and see that it's back to the first committed version:
-![](https://i.imgur.com/Ctc2qgv.png)
-
-Switch back to the lasted commit, again by `git checkout <commit id>` and view the content of the `my-first-file.py`:
-![](https://i.imgur.com/GPcBhvA.png)
-
-:::success
-As you see, once you commit the code, Git remembers what the code currently is. You can switch back to the previous version at will. **The entire history of changes is managed under a single directory.** Code management becomes clean and systematic.
-:::
-
-:::success
-**Takeaway**
-* Commit your work and feel free to modify the code further.
-* `git diff` displays all the un-added and un-committed changes.
-* `git show` displays the detailed changes of the last commit.
-* `git checkout <commit id>` **in-place** modify the content of files to the state of a commit in history
-:::
-
-#### a-2.3 New Branch for Managing Multiple Versions
-At some point in the project, you'll need different versions of the project. Maybe there are diverged directions about the project. Perhaps you want to experiment with a change but not yet determine everyone should use the changes.
-
-The plain old way of doing this:
-![](https://i.imgur.com/tgTGuAw.png)
-
-After reading the section, I hope you find Git has a far better way to solve the problem.
-
-For example, we want to print *Hello World* multiple times, but we are not sure if everyone needs this change. We can still do it within the same repository. To this point, our history is a single series of commits, one after another. Now we are going to separate the change from the "main history".
-
-We create a new branch *experiment* by `git branch experiment`.\
-We check the status by `git branch`:\
-The star "*" before the *main* indicates we are still at the *main* branch.\
-![](https://i.imgur.com/fKXK8EB.png)
-
-Now we switch to the *experiment* branch by `git checkout experiment\
-![](https://i.imgur.com/75nVaQQ.png)
-
-**Now, we demonstrate the ability of Git to bifurcate the project**. We do not go through the steps here. But they are conceptually simple:
-* Add a commit when we are in the *experiment* branch.
-* Switch to *main* branch 
-* Add a commit when we are in *main* branch
-
-Then use `git log --all --online --graph` to view the history. You see that we add two commits, separating from the `bfc86c5` commit.
-![](https://i.imgur.com/c0LE9hk.png)
-
-:::success
-"Splitting" the project by using multiple branches is powerful. All within a single repository, one can **easily manage multiple versions, especially when they are not necessary older/newer than others.**
-
-We highly encourage you to play above yourself. Examine the content of files and commit history during the process. That's the fastest way to grasp the concept and rationalize what you see.
+- `git status` checks the file changes
+- `git add <changed file1> <changed file2> ...` selects the file(s) to commit
+- `git commit` commit the changes. Be sure to type a concise and meaningful summary of your changes.
+- `git push` uploads the committed changes
+\
+\
+You may want to check out the References for more detailed explanation.  
 :::
 
 
-#### a-2.4 Sharing the Code
+### A-3 Edit and Run The Code
 
-We use [GitHub](https://github.com/) as the platform for collaboratively working on projects. GitHub, as its name suggested, is tightly integrated with Git. We demonstrate how to use Git to interact with GitHub.
+We now demonstrate how to modify and run the code for Ice Sheet/Shelf proejcts. We use [Shelf1D](https://github.com/YaoGroup/IceShelf1D) as example. Clone the project:
 
-We start by opening a new project on GitHub:
-* Open [Github](https://github.com/)
-* Register an account if you don't have one
-* Open a new repository by clicking the plus "+" sign on the top right and select "New Repository"
-* Select a name you like. Here we use "TutorialOnGit"
-* The rest boxes could remain unchecked
+`git clone git@github.com:YaoGroup/IceShelf1D.git`
 
-![](https://i.imgur.com/sFqFX48.png)
 
-Now comes the fundamental concept of interacting with GitHub.
+#### a-3-1 The Conda Environment
+
+We use [Conda](https://docs.conda.io/en/latest/) to manage the environment for Python. You can learn more about the Conda environment in References. 
 
 :::info
-GitHub stores a repository on its own. It is called **remote repository**.\
-\
-The repository we work from a-2.1 to a-2.3 is called **local repository** in this context. "Local" emphasizes that the repository resides on a local computer.\
-\
-Team members are working on their local repositories on their computer, while **share their local histories across the team through synchronization with a remote repository.**
+An Conda environment is an isolated set of files/programs to execute Python scripts. By isolated, it means that **the environment works independenttly from any other Python interpreter**, including the system default ones. So users can install Python packages specifically for an environment, without affecting any other Python interpreter. 
+
+It is essential for controlling the packages for running Python scripts. Without this, we'll encounter many "Why does the script work on my machine, but not yours?" problems.
 :::
 
-In the following, we show how to wire your local history to the remote one. First, we need to register a remote repository for a local one.
+All files/programs of an Conda environment is under a single directory. For example, the environment we built for running TensorFlow 2.x codes are under /opt/anaconda3/envs/tf24.
 
-The command `git remote` displays the list of repositories, currently empty, since there is none. We add one by:
+#### a-3-2 Use Standard Environment to Run a Script
 
-`git remote add <a name you like> <your remote repo link>`
+Run a script using specific environment is simple. For the IceShelf1D, we use tf24 environment to run the file `script/1sr_order_forward.py`of the project:
+- (First time only) setup Conda for use by `conda init`
+- Activate tf24 environment by `conda activate tf24`
+    - After which you shall see a `(tf24)` text before you name in terminal
+- Run the script `python3 script/1st_order_forward.py`
 
-You can choose a name you like for the remote repository. "origin" is typical. One can find the link for the remote repository on the project page:
+That's all.
 
-![](https://i.imgur.com/z8KIk01.png)
+You can deactivate an environment by `conda deactivate`
 
-In this case, we do
-* `git remote add origin https://github.com/MingRuey/TutorialOnGit.git` 
-* Check `git remote` display `origin`, which we just added
-* Check `git remote get-URL origin` displays the address of origin (`https://github.com/MingRuey/TutorialOnGit.git`)
+:::success
+We provide following standard environments:
+<br></br>
+> **tf24** (`conda acitvate tf24`)
+> 
+> 
+> **This is used for most ice sheet/shelf projects.**\
+> The standard environment for TensorFlow 2.X codes.
 
-Now, we are ready for synchronization with this GitHub remote repository. There are just basically two things -- upload and download commits.
+> **tf115** (`conda acitvate tf115`)
+> 
+> the standard environment for TensorFlow 1.X codes.
+
+> **tf114** (`conda acitvate tf114`)
+> 
+> Only for running [Razzi's PINN project](https://github.com/maziarraissi/PINNs)
+> It uses tf.contrib and thus too old for Tensorflow 1.15
+
+###### addtional info: [Admin notes on HackMD](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag?view)
+:::
+
+#### a-3-3 Create Your Own Environment
+
+Though non-admin users can not create named environements under /opt/anaconda3, they can still create custom environments under their other directories.
+
+We give the step-by-step example:
+
+1. Create and move into a target directory by `mkdir -p ~/Conda/my-env && cd ~/Conda/my-env`
+2. Create/Copy an environment file, you may find the example useful at the bottom of [this page](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag).
+3. Create an environment by `conda env create -f ./environment.yml -p .`
+4. To trigger the environemt, we have to specify the path: `conda env activate ~/Conda/my-env`
+
+After activation, you can run a script by `python3 <your script>`, as we have in a-3-2.
+
+^$\small\text{Though we recommend using environment file, it's not the only way to create an environemnt. Check out}$
+$\small\href{https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html}{the\ official\ documnet}$
+
+^$\small\href{https://princeton.zoom.us/rec/share/xW-kiZmsCqcXNZkyDJudxZk59pkP3mhr-8X8jI1H3Z7Hd6_R38LLkBVXRXYrOaQD.w55FzYVTfGEWgwph}{Our\ training\ session\  recording\ might\ help}$
+
+#### a-3-4 Edit Code and Run Jupyter NoteBook Using Visual Studio Code
+
+[Visual Studio Code](https://code.visualstudio.com/), or VSCode, is the our recommendation for editing Python code. Its ability to directly work on a remote machine, for example our workstation, is amazing.
 
 :::info
-**Upload All Local Commits in a Branch to the Remote**
-
-`git push`
-
-or if first time uploading a branch
-
-`git push --set-upstream origin <branch>`
-\
-\
-Git needs to know how to **map a local branch to a remote branch** for uploading. It's a good practice to make the name of the local branch the same as a remote one.
+We provide a [<u>step-by-step</u>](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g?view) walkthrough. 
 :::
+
+After you make the VSCode connects to the workstation, open any file, edit and save is happening on the workstation. No upload/downlaod or any kind of synchronization required. 
+
+This is espcailly useful for working with Jupyter Notebook. We can remotely develope the code on the workstation and easily view the result on the VSCode. Also, we could ask VSCode to use the specified Conda environment (as we did for script in a-3-2 & a-3-3) for running the notebook:
 
 :::info
-**Download the Commits from Remote**
+* Install Microsoft [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) & [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+* Open an Jupyter Notetook file, things should work.
+* Select the desired Python interpreter, at the top right of notebook
 
-`git pull`
-
-or if local has un-uploaded commits **and** remote has new commit(s) uploaded by other team members
-
-`git pull --rebase`\
-\
-Git needs to resolve how to combine the local (un-uploaded) changes with the new remote changes if both exist. **Option --rebase** is a way to handle the issue. It will find and start with the most recent common commits, apply the remote commits first, then apply the local ones.
+![](https://i.imgur.com/6UeUM4W.png)
+<br></br>
+VSCode is smart. By selecting correct interpreter path, it will load the corresponding Conda environments. For example, **using the standard tf24** environment, we could select:
+`/opt/anaconda3/envs/tf24/bin/python`
 :::
 
 
-### A-3 Setup Environment and Using Python
-...
+
+
+$\small\text{^There are other editors provide similar functions. For example, PyCharm on Mac has similar features}$
 
 ## B. Enhanced Workflow
 
@@ -402,26 +373,15 @@ We provide some useful additional tricks for using the workstation. The tricks c
 - Smooth and boost tedious routines
 - Enhance the robustness of the workflow against human error
 ...
-
 ### B-1 To Automate Everything (Shell Configuration)
 ...
-...
-...
-
 ### B-2 Secure Your Long-Running Jobs
-...
-...
-...
-
-### B-3 More Version Control
-...
-...
 ...
 
 ## C. References
 
-### [Remote Access to the workstation](https://hackmd.io/@MingRuey/r1LzVB3lY)
+### [Crash Course on Version Control using Git](https://hackmd.io/esQE9LzzTne-yhTrDzR9Iw?view)
 
-### [Using Conda Environment](https://hackmd.io/@MingRuey/ryZtHShlF)
+### [Remote Access to the workstation](https://hackmd.io/9iVBJfITQwy8tIz9ubgorw?view)
 
-### [Using Long-term Storage on HPC](https://hackmd.io/@MingRuey/HJjXIr2xF)
+### [Using Long-term Storage on HPC](https://hackmd.io/KmB3_m4zQNedVgHcWgaumg?view)
