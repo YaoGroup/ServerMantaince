@@ -6,7 +6,7 @@
 This note serves the following purpose:
 - As the onboard training for anyone using the workstation for his work. It provides best practices for writing code and using the workstation to run code.
 - As the reference note for fundamental technical issues or additional tips for enhancing the personal workflow.
-- As the reference note for the future administrator to understand the system set-up.
+- As the reference note for the future administrator to understand the system setup.
 
 The note is the main page and contains links to additional references. The main page aims at onboard new comber, so they can grasp the essential concepts and start using the workstation ASAP. Other references teach one how to achieve specific things in a step-by-step way.
 
@@ -167,12 +167,12 @@ or\
 If the target does not exist, it creates a new file.
 \
 \
-It worth writing another book for using `vim`. For now, we only show how to start editting and quit the program.
+It is worth writing another book for using `vim`. For now, we only show how to start editing and quit the program.
 \
 \
-**Start Editting**
+**Start Editing**
 
-Click `i` and check there is a text `-- INSERT --` at the bottom left. If so, you are in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did. It's a plain mode without convenient features you used to have, for example "undo" & "copy-paste".
+Click `i' and check there is a text `-- INSERT --` at the bottom left. If so, you are in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did. It's a basic mode without convenient features you used to have, for example, "undo" & "copy-paste".
 \
 \
 **Save and Quit**
@@ -201,37 +201,37 @@ We use [GitHub](https://github.com/) as the platform for collaboratively working
 :::info
 Register an account for GitHub.
 
-Contact Yao to give you the permission to access the code.
+Contact Yao to allow you to access the code.
 :::
 
 #### 
 
-GitHub has prohibited simple password since Aug 2021. We need to setup the authentication. It seems cumbersome, but saves you from typing password everytime. Make sure you follow the instructions:  
+GitHub has prohibited simple passwords since Aug 2021. We need to set up the authentication. It seems cumbersome but saves you from typing a password every time. Make sure you follow the instructions:  
 
 :::info
-**Setup the Autehntication of GitHub**
+**Setup the Authentication of GitHub**
 
 - [<u>"Generating a new SSH key"</u>](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) section to create and add keys. 
-- [<u>"Adding your ssh key to the ssh aggnet"</u>]( https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) section
-- Copy the content of **id_ed25519.pub** and add it as key to your GitHub account.
-    - Execute `cat id_ed25519.pub` display the content of file in terminal
+- [<u>"Adding your ssh key to the ssh-agent"</u>]( https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) section
+- Copy the content of **id_ed25519.pub** and add it as a key to your GitHub account.
+    - Execute `cat id_ed25519.pub` to display the content of the file in terminal
     - Click **New SSH Key** at [<u>SSH and GPG keys</u>](https://github.com/settings/keys), and copy the content into the **Key** field. 
-    - Type anything you like into the **Title** field, for example "Yao Group Workstation".
+    - Type anything you like into the **Title** field, for example, "Yao Group Workstation".
 :::
 
-Now we are ready to use GitHub. The tool we are using for code management is **Git**. GitHub is tightly intergrated with Git. We'll use the [Toy Example](https://github.com/YaoGroup/ToyExample) code as the example.
+Now we are ready to use GitHub. The tool we are using for code management is **Git**. GitHub tightly integrates with Git. We'll use the [Toy Example](https://github.com/YaoGroup/ToyExample) code as an example.
 
-Switch your current working directory to a place you like, and start by exectute:
+Switch your current working directory to a place you like, and start by execute:
 
 `git clone git@github.com:YaoGroup/ToyExample.git`
 
-Git will download the code from the GitHub to a (new) directory *ToyExample* under the current working directory.
+Git will download the code from GitHub to a (new) directory *ToyExample* under the current working directory.
 
 #### a-2-2 Upload Your Changes
 
 `cd` into the *ToyExample* directory.
 
-Try using `vim` or other methods you like to modify the README.md, by adding a line below the message section. For example, Ray add his message
+Try using `vim` or other methods to modify the README.md by adding a line below the message section. For example, Ray add his message
 `Ray: Welcome! Hope the tutorials are clear and helpful!`
 
 ![](https://i.imgur.com/FYqQZ4v.png)
@@ -240,7 +240,7 @@ Save the changes, and check your changes by
 
 `git status`
 
-It will display that the README.md has been changed. Now we need to use Git to create a formal save point of the change.
+It will indicate the README.md has changed. Now we need to use Git to create a formal savepoint of the change.
 
 :::info
 The fundamental element of a version control system is a save point. Savepoint means a snapshot of what files are like at the time of saving. In Git, we call a savepoint **commit**. Also, when we use commit as a verb, it means storing changes into a commit.
@@ -248,14 +248,14 @@ The fundamental element of a version control system is a save point. Savepoint m
 
 Commit your change by:
 - Select the change to commit by `git add README.md`
-- `git commit`, which will pop-up a vim to create a summary of your change. Here we use `Create first change for <your name>`. Save the summary as  saving a file.
+- `git commit`, which will pop up vim to create a summary of your change. Here we use `Create first change for <your name>`. Save the summary as saving a file.
 ![](https://i.imgur.com/XdfgQw4.png)
 - Upload your change by `git push`
 
-Now, by refreshing [the project page](https://github.com/YaoGroup/ToyExample), you shall see your new message at the front page. 
+Now, by refreshing [the project page](https://github.com/YaoGroup/ToyExample), you shall see your new message on the front page. 
 
 #### a-2-3 Download Changes from Others
-You may not be the only one working on the project. When someone uploaded his changes, you can download his changes by execute `git pull` under the project directory.
+You may not be the only one working on the project. You can download the changes by execute `git pull` under the project directory when someone uploaded his changes.
 
 :::success
 
@@ -265,13 +265,13 @@ You may not be the only one working on the project. When someone uploaded his ch
 - `git push` uploads the committed changes
 \
 \
-You may want to check out the References for more detailed explanation.  
+You may want to check out the References for a more detailed explanation.  
 :::
 
 
 ### A-3 Edit and Run The Code
 
-We now demonstrate how to modify and run the code for Ice Sheet/Shelf proejcts. We use [Shelf1D](https://github.com/YaoGroup/IceShelf1D) as example. Clone the project:
+We now demonstrate how to modify and run the code for Ice Sheet/Shelf projects. We use [Shelf1D](https://github.com/YaoGroup/IceShelf1D) as an example. Clone the project:
 
 `git clone git@github.com:YaoGroup/IceShelf1D.git`
 
@@ -281,19 +281,19 @@ We now demonstrate how to modify and run the code for Ice Sheet/Shelf proejcts. 
 We use [Conda](https://docs.conda.io/en/latest/) to manage the environment for Python. You can learn more about the Conda environment in References. 
 
 :::info
-An Conda environment is an isolated set of files/programs to execute Python scripts. By isolated, it means that **the environment works independenttly from any other Python interpreter**, including the system default ones. So users can install Python packages specifically for an environment, without affecting any other Python interpreter. 
+A Conda environment is an isolated set of files/programs to execute Python scripts. By isolated, it means that **the environment works independently from any other Python interpreter**, including the system default ones. So users can install Python packages specifically for an environment without affecting any other Python interpreter. 
 
-It is essential for controlling the packages for running Python scripts. Without this, we'll encounter many "Why does the script work on my machine, but not yours?" problems.
+It is essential for controlling the packages for running Python scripts. We'll encounter many "Why does the script work on my machine, but not yours?" problems without this.
 :::
 
-All files/programs of an Conda environment is under a single directory. For example, the environment we built for running TensorFlow 2.x codes are under /opt/anaconda3/envs/tf24.
+All files/programs of a Conda environment are under a single directory. For example, the environment we built for running TensorFlow 2.x codes are under `/opt/anaconda3/envs/tf24`.
 
 #### a-3-2 Use Standard Environment to Run a Script
 
-Run a script using specific environment is simple. For the IceShelf1D, we use tf24 environment to run the file `script/1sr_order_forward.py`of the project:
+Run a script using a specific environment is simple. For the IceShelf1D, we use tf24 environment to run the file `script/1sr_order_forward. py' of the project:
 - (First time only) setup Conda for use by `conda init`
 - Activate tf24 environment by `conda activate tf24`
-    - After which you shall see a `(tf24)` text before you name in terminal
+    - After which you shall see a `(tf24)` text before your name in terminal
 - Run the script `python3 script/1st_order_forward.py`
 
 That's all.
@@ -306,7 +306,7 @@ We provide following standard environments:
 > **tf24** (`conda acitvate tf24`)
 > 
 > 
-> **This is used for most ice sheet/shelf projects.**\
+> **We use this for most ice sheet/shelf projects.**\
 > The standard environment for TensorFlow 2.X codes.
 
 > **tf115** (`conda acitvate tf115`)
@@ -318,54 +318,54 @@ We provide following standard environments:
 > Only for running [Razzi's PINN project](https://github.com/maziarraissi/PINNs)
 > It uses tf.contrib and thus too old for Tensorflow 1.15
 
-###### addtional info: [Admin notes on HackMD](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag?view)
+addtional info: [Admin notes on HackMD](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag?view)
 :::
 
 #### a-3-3 Create Your Own Environment
 
-Though non-admin users can not create named environements under /opt/anaconda3, they can still create custom environments under their other directories.
+Though non-admin users can not create named environments under /opt/anaconda3, they can still create custom environments under their other directories.
 
 We give the step-by-step example:
 
 1. Create and move into a target directory by `mkdir -p ~/Conda/my-env && cd ~/Conda/my-env`
 2. Create/Copy an environment file, you may find the example useful at the bottom of [this page](https://hackmd.io/7PUOhT4GREysoZkAwp-3Ag).
 3. Create an environment by `conda env create -f ./environment.yml -p .`
-4. To trigger the environemt, we have to specify the path: `conda env activate ~/Conda/my-env`
+4. To trigger the environment, we have to specify the path: `conda env activate ~/Conda/my-env`
 
 After activation, you can run a script by `python3 <your script>`, as we have in a-3-2.
 
-^$\small\text{Though we recommend using environment file, it's not the only way to create an environemnt. Check out}$
+^$\small\text{Though we recommend using an environment file, it's not the only way to create an environment. Check out}$
 $\small\href{https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html}{the\ official\ documnet}$
 
 ^$\small\href{https://princeton.zoom.us/rec/share/xW-kiZmsCqcXNZkyDJudxZk59pkP3mhr-8X8jI1H3Z7Hd6_R38LLkBVXRXYrOaQD.w55FzYVTfGEWgwph}{Our\ training\ session\  recording\ might\ help}$
 
 #### a-3-4 Edit Code and Run Jupyter NoteBook Using Visual Studio Code
 
-[Visual Studio Code](https://code.visualstudio.com/), or VSCode, is the our recommendation for editing Python code. Its ability to directly work on a remote machine, for example our workstation, is amazing.
+[Visual Studio Code](https://code.visualstudio.com/), or VSCode, is our recommendation for editing Python code. Its ability to directly work on a remote machine, for example, our workstation, is impressive.
 
 :::info
 We provide a [<u>step-by-step</u>](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g?view) walkthrough. 
 :::
 
-After you make the VSCode connects to the workstation, open any file, edit and save is happening on the workstation. No upload/downlaod or any kind of synchronization required. 
+After you make the VSCode connects to the workstation, editing files inside VScode happens on the workstation. No upload/download or synchronization is required. 
 
-This is espcailly useful for working with Jupyter Notebook. We can remotely develope the code on the workstation and easily view the result on the VSCode. Also, we could ask VSCode to use the specified Conda environment (as we did for script in a-3-2 & a-3-3) for running the notebook:
+It is handy for working with Jupyter Notebook. We can remotely develop the code on the workstation and easily view the result on the VSCode. Also, we could ask VSCode to use the specified Conda environment (as we did for script in a-3-2 & a-3-3) for running the notebook:
 
 :::info
 * Install Microsoft [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) & [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
-* Open an Jupyter Notetook file, things should work.
-* Select the desired Python interpreter, at the top right of notebook
+* Open a Jupyter Notebook file. Things should work.
+* Select the desired Python interpreter at the top right of the notebook
 
 ![](https://i.imgur.com/6UeUM4W.png)
 <br></br>
-VSCode is smart. By selecting correct interpreter path, it will load the corresponding Conda environments. For example, **using the standard tf24** environment, we could select:
+VSCode is smart. By selecting the correct interpreter path, it will load the corresponding Conda environments. For example, **using the standard tf24** environment, we could choose:
 `/opt/anaconda3/envs/tf24/bin/python`
 :::
 
 
 
 
-$\small\text{^There are other editors provide similar functions. For example, PyCharm on Mac has similar features}$
+$\small\text{^There are other editors that provide similar functions. For example, PyCharm on Mac has similar features}$
 
 ## B. Enhanced Workflow
 
