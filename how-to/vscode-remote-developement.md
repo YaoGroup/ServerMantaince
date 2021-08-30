@@ -1,6 +1,9 @@
 # Using Conda Environment Remotely with Visual Studio Code
+=== A reference for [Yao Group workstation Infrastructure Note](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w) ===
 
-This guide teaches how to use Visual Studio Code to develop jupyter notebook on our workstation.
+This guide teaches how to use Visual Studio Code to develop code on our workstation.
+
+^$\small\href{https://princeton.zoom.us/rec/share/B37MWuRTVkHTkpo_2X9njmZugexJtN7SuIjLr4lty8DyFCDQPB-vjkQjzsV1dDWB.7AYAUTr9W4GvHxrH}{Our\ training\ session\  recording\ might\ help}$
 
 ### 1. Install
 
@@ -27,25 +30,3 @@ Host YaoGroup
 
 * f. Verify you are actually using working station by open a folder.
 ![](https://i.imgur.com/0r6YrPK.png)
-
-### Develop Jupyter Notebook using Conda
-
-* a. Install Microsoft [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) & [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
-
-
-* b. Open an Jupyter Notetook file, things should work.
-
-* c. Select the desired Python interpreter, at the top right of notebook
-
-![](https://i.imgur.com/6UeUM4W.png)
-
-:::success
-VSCode is smart. By selecting correct interpreter path, it will load the corresponding Conda environments.
-
-**For standard tf115** Environment: 
-`/opt/anaconda3/envs/tf115/bin/python`
-
-**For standard tf24** Environment: 
-`/opt/anaconda3/envs/tf24/bin/python`
-:::
-
