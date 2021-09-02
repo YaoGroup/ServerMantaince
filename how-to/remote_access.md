@@ -6,7 +6,7 @@ The IP address of the workstation is *yaolab.princeton.edu*.
 
 Before login, one must:
 > 1. Contact Yao for applying an account of the workstation
-> 2. Access internet via [Princeton VPN service](https://informationsecurity.princeton.edu/connecting-to-princeton-n) 
+> 2. Within Princeton network, or access internet via [Princeton VPN service](https://informationsecurity.princeton.edu/connecting-to-princeton-n) 
 
 For commandline (CLI) usage, it provides SSH login via:
 
@@ -40,17 +40,23 @@ One can use terminals like [Mobaxterm](https://mobaxterm.mobatek.net/)(for Windo
 
 One can also use [Key-Authencation](https://en.wikipedia.org/wiki/Key_authentication) based ssh login.
 It involves mainly three steps:
+
 1. Generate a key-pair on local device
-    - Execute `ssh-keygen -t rsa` in terminal
-        - For the file name, one can just use the default (like /home/user-name/.ssh/id_rsa)
+    - Execute `ssh-keygen -t ed25519` in terminal
+        - For the file name, one can just use the default (C:\Users\mrchou\.ssh\id_ed25519)
         - Passphrase can remain empty
-        - The file id_rsa is the **private key**, **DO NOT** reveal it to anyone
-        - The file ida_rsa.pub is **public key**, we shall add the content of this file onto workstation
+        - The file id_ed25519 is the **private key**, **DO NOT** reveal it to anyone
+        - The file id_ed25519.pub is **public key**, we shall add the content of this file onto workstation
+
 2. Add public key of key-pair to the allowed identities list on target device (i.e. the workstation)
-    - Open the file `/home/user-name/.ssh/authorized_keys`. Create the file, or even the .ssh directory if they do not exist.
+    - Login to the workstation
+    - Open the file `/home/<username>/.ssh/authorized_keys`. Create the file, or even the .ssh directory if they do not exist.
         - Execute the following to create the file and the directory\
           `mkdir "~/.ssh" && touch ~/.ssh/authorized_keys`
     - Edit the file by copy the content of previous **public key file (ida_rsa.pub)** into the the authorized_keys.
+        - On Windows, `type C:\Users\mrchou\.ssh\id_ed25519.pub` to display the content
+            - One can also use Notepad or simlilar to open the file and view the content
+            - For Mac/Linux, replace `type` with `cat`
         - Though very long, all the content of public key file is only single line.
         - One can add as many public keys into the autorized_keys file. So the file contains multiple lines, one line per public key. This make multiple machines regeistered on the the workstation.
 
