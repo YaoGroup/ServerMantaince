@@ -116,7 +116,7 @@ You'll remember them automatically after doing it hundreds of times. Before your
 
 #### a-1.3 Basic Command
 
-We introduce the seven essential commands:
+We introduce the eight essential commands:
 
 :::info
 **Switch your working directory:**
@@ -125,6 +125,14 @@ We introduce the seven essential commands:
 
 You see that the location after your name changes.\
 You can also confirm that by using `pwd`
+\
+\
+Tips:
+- `cd ..` moves "one layer up", i.e., into the parent directory.
+- `cd ../..` moves "two layers up" and so on.
+\
+\
+`..` is a convenient word for sepcifying path, like the previous tilde symbol `~`. The meaning of `..` is roughly *'the parent'*. It's not for `cd` only, you can use it with all the commands listed below. For example, `ls ..` lists the content of the parent directory.
 :::
 
 :::info
@@ -157,7 +165,7 @@ Rename is the special case of a general moving actually.\
 **Create New Directory**\
 `mkdir <new directory>`\
 or\
-`mkdir -p /a/series/of/directory/`
+`mkdir -p ./a/series/of/directory/`
 :::
 
 :::info
@@ -172,7 +180,7 @@ It is worth writing another book for using `vim`. For now, we only show how to s
 \
 **Start Editing**
 
-Click `i' and check there is a text `-- INSERT --` at the bottom left. If so, you are in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did. It's a basic mode without convenient features you used to have, for example, "undo" & "copy-paste".
+Click `i` and check there is a text `-- INSERT --` at the bottom left. If so, you are in *insert mode* and ready to add/remove some texts. You can type/delete texts as you normally did. It's a basic mode without convenient features you used to have, for example, "undo" & "copy-paste".
 \
 \
 **Save and Quit**
@@ -183,6 +191,8 @@ Click `esc` when you finish. It will leave insert mode. To save and quit, type a
 :::info
 **Upload/Download File from Workstation**
 <br></br>
+**You have to execute `scp` command on your local PC, NOT the workstation**
+<br></br>
 Upload from the local PC to the workstation:\
 `scp -r D:\what\I\want\to\upload <my-account>@yaolab.princeton.edu:/place/to/upload/`
 <br></br>
@@ -190,7 +200,25 @@ Download from the workstation to the local PC -- just reverse the arguments of u
 `scp -r <my-account>@yaolab.princeton.edu:/target/to/download/ D:\where\I\want\to\store`
 :::
 
+:::info
+**Remove Files/Directories**
+
+Be careful, there is **no way to recover** removed files.
+<br></br>
+Removes File(s):\
+`rm <file1> <file2> ...` 
+<br></br>
+Remove Empty Directory(ies):\
+`rm -d <empty directory1> <empty directory2> ...`\
+It removes empty directory only. If the directory is not empty, the action is blocked.
+<br></br>
+Remove File(s)/Directory(ies) and Its(Their) Content Recursively:\
+`rm -r <directory or file1> <directory or file2> ...`\
+Be careful. This will removes all things under the a directory.
+:::
+
 By combining the above commands, you can conduct all essentials on the workstation.
+Though we recommend using command line, you may occasionally require a graphical user interface. We also provide that for the workstation. Please check the "Remote Access to the workstation" in References.
 
 ### A-2 Access the Code of Our Group
 
@@ -211,10 +239,10 @@ GitHub has prohibited simple passwords since Aug 2021. We need to set up the aut
 :::info
 **Setup the Authentication of GitHub**
 
-- [<u>"Generating a new SSH key"</u>](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) section to create and add keys. 
-- [<u>"Adding your ssh key to the ssh-agent"</u>]( https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) section
-- Copy the content of **id_ed25519.pub** and add it as a key to your GitHub account.
-    - Execute `cat id_ed25519.pub` to display the content of the file in terminal
+- [Follow <u>"Generating a new SSH key"</u>](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) section to create and add keys. 
+- [Follow <u>"Adding your ssh key to the ssh-agent"</u>]( https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) section
+- Copy the content of **~/.ssh/id_ed25519.pub** and add it as a key to your GitHub account.
+    - Execute `cat ~/.ssh/id_ed25519.pub` to display the content of the file in terminal
     - Click **New SSH Key** at [<u>SSH and GPG keys</u>](https://github.com/settings/keys), and copy the content into the **Key** field. 
     - Type anything you like into the **Title** field, for example, "Yao Group Workstation".
 :::
@@ -246,7 +274,14 @@ It will indicate the README.md has changed. Now we need to use Git to create a f
 The fundamental element of a version control system is a save point. Savepoint means a snapshot of what files are like at the time of saving. In Git, we call a savepoint **commit**. Also, when we use commit as a verb, it means storing changes into a commit.
 :::
 
-Commit your change by:
+The first time you commit on the workstation, you have to tell Git who you are before committing.
+Register your email and name by the followings:
+- `git config --global user.email <your Github email>`
+    - **should be exactly same as the email of your Github account**
+- `git config --global user.name <your Name>`, use a name we all recognize
+
+
+We are ready to commit your change by:
 - Select the change to commit by `git add README.md`
 - `git commit`, which will pop up vim to create a summary of your change. Here we use `Create first change for <your name>`. Save the summary as saving a file.
 ![](https://i.imgur.com/XdfgQw4.png)
@@ -347,7 +382,7 @@ $\small\href{https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-e
 We provide a [<u>step-by-step</u>](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g?view) walkthrough. 
 :::
 
-After you make the VSCode connects to the workstation, editing files inside VScode happens on the workstation. No upload/download or synchronization is required. 
+After you make the VSCode connects to the workstation, editing files inside VScode happens on the workstation. No upload/download or synchronization is required.
 
 It is handy for working with Jupyter Notebook. We can remotely develop the code on the workstation and easily view the result on the VSCode. Also, we could ask VSCode to use the specified Conda environment (as we did for script in a-3-2 & a-3-3) for running the notebook:
 
