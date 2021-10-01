@@ -407,11 +407,71 @@ $\small\text{^There are other editors that provide similar functions. For exampl
 We provide some useful additional tricks for using the workstation. The tricks can:
 - Smooth and boost tedious routines
 - Enhance the robustness of the workflow against human error
+
+### B-1 Secure Your Long-Running Jobs (tmux)
+
+:::info
+TLDR;
+
+Execute `tmux new -s <name>` to create a persistent terminal. Run your job inside the terminal. The workstation holds the jobs inside the terminal regardless of the internet connection. Use `tmux attach -t <name>` to get back to the terminal.
+:::
+
+To this point, we know how to use ssh to login and work on the workstation. But there is a caveat:
+Launch a job, for example, `python my-job.py` within a ssh login. **If the login is disconnected, the job terminates**.
+
+This makes long-running jobs unfeasible, especially over an unstable internet connection.
+
+The canonical way of doing this is using a [terminal multiplexer](https://en.wikipedia.org/wiki/Terminal_multiplexer). We won't explain the mechanism behind this. We only show how to use [tmux](https://en.wikipedia.org/wiki/Tmux) to avoid the disconnection problem.
+
+We give a simple mental model for using tmux: **When you execute `tmux` in the terminal, it creates a persistent terminal, denoted as PT, which does not end even if the internet connection is lost.**
+
+In this section, we are going to use a simple python script `job.py` to mimic a long-running job:
+```
+# content of job.py
+import time
+from datetime import datetime
+
+while True:
+    time.sleep(1)
+    print("Curent time", datetime.now())
+```
+
+Now execute `tmux new -s MyPT`. after which you are in a new terminal. Run `python job.py`, it displays the current time roughly every second. 
+![](https://hackmd.io/_uploads/SknOhyHNK.png)\
+
+Now, close the cmd, Powershell, Mobaxterm, or whatever you use to login. You can also try turning off your internet :->
+
+Login back to the workstation again, now type `tmux ls`, it should display something like this:
+![](https://hackmd.io/_uploads/BkB5jkSNt.png)\
+Your terminal is still alive!
+
+Use `tmux attach -t <MyPT>`, you shall go back to the previous terminal and see your `job.py` is still running, as if nothing happens!
+
+:::info
+`tmux`\
+Start a new PT with auto-generated name. `tmux new -s <name>` does the same with given name. One can not create a PT inside a PT.
+<br></br>
+`tmux ls`\
+Display the names of all PTs.
+<br></br>
+`tmux attach -t <name>`\
+Get back to the PT with that name. This is the magic to use when one wants to get back the terminal previously working in after losing the connection.
+<br></br>
+Inside PT:\
+`exit`
+
+Outside PT:\
+`tmux kill-session -t <name>`
+
+End a PT by either (you will lose your job inside the PT).
+One only needs to end PTs occasionally. It's usually for cleaning up the zombie PTs on the workstation.
+<br></br>
+Some other helpful tips we do not cover. For example, one can split a PT into two or more panels, which allow multiple jobs to run inside a single PT. Check out this [youtube video](https://www.youtube.com/watch?v=Yl7NFenTgIo).
+:::
+
+### B-2 To Automate Everything (Shell Configuration)
 ...
-### B-1 To Automate Everything (Shell Configuration)
-...
-### B-2 Secure Your Long-Running Jobs
-...
+
 
 ## C. References
 
