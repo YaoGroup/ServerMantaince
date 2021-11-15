@@ -402,15 +402,13 @@ VSCode is smart. By selecting the correct interpreter path, it will load the cor
 
 $\small\text{^There are other editors that provide similar functions. For example, PyCharm on Mac has similar features}$
 
-## B. Enhanced Workflow
+## B. Usefull Skills
 
-We provide some useful additional tricks for using the workstation. The tricks can:
-- Smooth and boost tedious routines
-- Enhance the robustness of the workflow against human error
+We provide two important skills for working on the workstation and on Princeton cluster. 
 
 ### B-1 Secure Your Long-Running Jobs (tmux)
 
-:::info
+:::success
 TLDR;
 
 Execute `tmux new -s <name>` to create a persistent terminal. Run your job inside the terminal. The workstation holds the jobs inside the terminal regardless of the internet connection. Use `tmux attach -t <name>` to get back to the terminal.
@@ -449,7 +447,7 @@ Use `tmux attach -t <MyPT>`, you shall go back to the previous terminal and see 
 
 :::info
 `tmux`\
-Start a new PT with auto-generated name. `tmux new -s <name>` does the same with given name. One can not create a PT inside a PT.
+Start a new PT with auto-generated name. `tmux new -s <name>` does the same with given name. One can not create another PT inside a PT.
 <br></br>
 `tmux ls`\
 Display the names of all PTs.
@@ -469,8 +467,60 @@ One only needs to end PTs occasionally. It's usually for cleaning up the zombie 
 Some other helpful tips we do not cover. For example, one can split a PT into two or more panels, which allow multiple jobs to run inside a single PT. Check out this [youtube video](https://www.youtube.com/watch?v=Yl7NFenTgIo).
 :::
 
-### B-2 To Automate Everything (Shell Configuration)
+### B-2 Using Princeton cluster
+
+[Princeton Research Computing](https://researchcomputing.princeton.edu/) offers bountiful computing resources. Working on the cluster is mostly same as working on the workstation.
+    
+:::info
+Few important differences between using the cluster and the workstation:
+
+1. One can not acquire computing resources (CPU & GPU) freely. **One needs to submit their jobs using via the Slurm system. All users submit their jobs to the Slurm, and Slurm will determine which jobs first get executed.**
+
+2. While you can still run small scripts without contacting Slurm, it's highly recommended fully-tested your jobs on your own PC or the workstation. Using Cluster only when you are ready for submitting large amount of computing work.
+    
+3. Running jobs is one step more than just `python myscript.py`. **Slurm asks a text file called *Slurm script* for submitting jobs.** So the process becomes:
+    - Write your `myscript.py`
+    - Write the Slurm script `my_submit.slurm`
+        - inside the `my_submit.slurm`, specify you want to do `python myscript.py`
+    - Submit `my_submit.slurm` to Slurm
+
+4. There is **no** existing Conda environments like what we provide on the workstation. You have to create by your own.
+:::
+    
+#### b-2.1 Understanding the cluster and Write Slurm script
+
+We highly recommend to go through the guide from Princeton Research Computing:
+- https://researchcomputing.princeton.edu/get-started/guide-princeton-clusters
+- https://researchcomputing.princeton.edu/support/knowledge-base/slurm
+    
+    
+If you are impatient, you can diretly jump to the Python page:
+- https://researchcomputing.princeton.edu/support/knowledge-base/python
+
+
+#### b-2.2 A helper tools for batch submitting jobs to cluster
+
+For example, in our [Shelf 2D](https://github.com/YaoGroup/IceShelf2D), we have an script file `script_inverse.py` for inversion of hardness. One can run the script via terminal:
+```
+python script_inverse.py 0.001 -o ./output_dir
+```
+where the number `0.001` specifies the noise ratio.
+
+To systematically run the script with different noise ratio, using the terminal, one could do:
+```
+python script_inverse.py 0.001 -o ./noise_experiment &&
+python script_inverse.py 0.002 -o ./noise_experiment &&
+python script_inverse.py 0.005 -o ./noise_experiment &&
+python script_inverse.py 0.01 -o ./noise_experiment &&
+python script_inverse.py 0.02 -o ./noise_experiment &&
+python script_inverse.py 0.05 -o ./noise_experiment &&
 ...
+```
+
+We create a simple tool for exactly the above use case:
+https://github.com/YaoGroup/slurm_tool
+
+**As long as your script can vary the target variable by accpeting argument(s) from terminal**, our tool can transform the above terminal task into a Slurm script for cluster. For detailed usage, please refer to the GitHub page.
 
 
 ## C. References
