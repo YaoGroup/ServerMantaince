@@ -469,14 +469,14 @@ Some other helpful tips we do not cover. For example, one can split a PT into tw
 
 ### B-2 Using Princeton cluster
 
-[Princeton Research Computing](https://researchcomputing.princeton.edu/) offers bountiful computing resources. Working on the cluster is mostly same as working on the workstation.
+[Princeton Research Computing](https://researchcomputing.princeton.edu/) offers bountiful computing resources. Working on the cluster is mostly the same as working on the workstation.
     
 :::info
-Few important differences between using the cluster and the workstation:
+Few crucial differences between using the cluster and the workstation:
 
-1. One can not acquire computing resources (CPU & GPU) freely. **One needs to submit their jobs using via the Slurm system. All users submit their jobs to the Slurm, and Slurm will determine which jobs first get executed.**
+1. One can not acquire computing resources (CPU & GPU) freely. **One needs to submit their jobs using via the Slurm system. All users submit their jobs to Slurm, and Slurm will determine which jobs first get executed.**
 
-2. While you can still run small scripts without contacting Slurm, it's highly recommended fully-tested your jobs on your own PC or the workstation. Using Cluster only when you are ready for submitting large amount of computing work.
+2. While you can still run small scripts without contacting Slurm, it's highly recommended to fully-tested your jobs on your PC or the workstation. Use cluster only when you are ready to submit a large amount of computing work.
     
 3. Running jobs is one step more than just `python myscript.py`. **Slurm asks a text file called *Slurm script* for submitting jobs.** So the process becomes:
     - Write your `myscript.py`
@@ -484,29 +484,29 @@ Few important differences between using the cluster and the workstation:
         - inside the `my_submit.slurm`, specify you want to do `python myscript.py`
     - Submit `my_submit.slurm` to Slurm
 
-4. There is **no** existing Conda environments like what we provide on the workstation. You have to create by your own.
+4. There are **no** existing Conda environments like what we provide on the workstation. You have to create on your own.
 :::
     
 #### b-2.1 Understanding the cluster and Write Slurm script
 
-We highly recommend to go through the guide from Princeton Research Computing:
+We highly recommend going through the guide from Princeton Research Computing:
 - https://researchcomputing.princeton.edu/get-started/guide-princeton-clusters
 - https://researchcomputing.princeton.edu/support/knowledge-base/slurm
     
     
-If you are impatient, you can diretly jump to the Python page:
+If you are impatient, you can directly jump to the Python page:
 - https://researchcomputing.princeton.edu/support/knowledge-base/python
 
 
-#### b-2.2 A helper tools for batch submitting jobs to cluster
+#### b-2.2 A helper tools for batch submitting jobs to the cluster
 
-For example, in our [Shelf 2D](https://github.com/YaoGroup/IceShelf2D), we have an script file `script_inverse.py` for inversion of hardness. One can run the script via terminal:
+For example, in our [Shelf 2D](https://github.com/YaoGroup/IceShelf2D), we have a script file `script_inverse.py` for inversion of hardness. One can run the script via terminal:
 ```
 python script_inverse.py 0.001 -o ./output_dir
 ```
 where the number `0.001` specifies the noise ratio.
 
-To systematically run the script with different noise ratio, using the terminal, one could do:
+To systematically run the script with different noise ratios, using the terminal, one could do:
 ```
 python script_inverse.py 0.001 -o ./noise_experiment &&
 python script_inverse.py 0.002 -o ./noise_experiment &&
@@ -517,10 +517,10 @@ python script_inverse.py 0.05 -o ./noise_experiment &&
 ...
 ```
 
-We create a simple tool for exactly the above use case:
+We create a simple tool for precisely the above use case:
 https://github.com/YaoGroup/slurm_tool
 
-**As long as your script can vary the target variable by accpeting argument(s) from terminal**, our tool can transform the above terminal task into a Slurm script for cluster. For detailed usage, please refer to the GitHub page.
+**As long as your script can vary the target variable by accepting argument(s) from terminal**, our tool can transform the above terminal task into a Slurm script for the cluster. For detailed usage, please refer to the GitHub page.
 
 
 ## C. References
