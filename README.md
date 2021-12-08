@@ -469,25 +469,29 @@ Some other helpful tips we do not cover. For example, one can split a PT into tw
 
 ### B-2 Using Princeton cluster
 
-[Princeton Research Computing](https://researchcomputing.princeton.edu/) offers bountiful computing resources. Working on the cluster is mostly the same as working on the workstation.
+[Princeton Research Computing](https://researchcomputing.princeton.edu/) offers bountiful computing resources. Working on the cluster is mostly the same as working on the workstation. First, Use ssh to connect to the Princeton cluster, just like our workstation. Use Della with GPU for example:
+
+`ssh <Your Princeton ID>@della-gpu.princeton.edu`
+
     
+However, there are crucial differences between using the cluster and the workstation:
+
 :::info
-Few crucial differences between using the cluster and the workstation:
-
-1. One can not acquire computing resources (CPU & GPU) freely. **One needs to submit their jobs using via the Slurm system. All users submit their jobs to Slurm, and Slurm will determine which jobs first get executed.**
-
-2. While you can still run small scripts without contacting Slurm, it's highly recommended to fully-tested your jobs on your PC or the workstation. Use cluster only when you are ready to submit a large amount of computing work.
+1. One can not freely acquire computing resources (CPU & GPU). **One needs to submit their jobs via the Slurm system. All users submit their jobs to Slurm, and Slurm will determine which jobs first get executed.**
     
-3. Running jobs is one step more than just `python myscript.py`. **Slurm asks a text file called *Slurm script* for submitting jobs.** So the process becomes:
+2. There are **no** existing Conda environments like what we provide on the workstation. You have to create on your own before using Slurm.
+ 
+3. Using Slurm is just one step more than `python myscript.py`. **Slurm asks a text file called *Slurm script* for submitting jobs.** So the process becomes:
     - Write your `myscript.py`
+    - Create Conda environment on the cluster
     - Write the Slurm script `my_submit.slurm`
-        - inside the `my_submit.slurm`, specify you want to do `python myscript.py`
+        - inside the `my_submit.slurm`, specify you want to do -- `python myscript.py`
     - Submit `my_submit.slurm` to Slurm
 
-4. There are **no** existing Conda environments like what we provide on the workstation. You have to create on your own.
+4. While you can still run small scripts on the cluster without contacting Slurm, it's highly recommended to fully-tested your jobs on your PC or the workstation. Use the cluster only when you are ready to submit a large amount of computing work.
 :::
     
-#### b-2.1 Understanding the cluster and Write Slurm script
+#### b-2.1 Understand the cluster and Write Slurm script
 
 We highly recommend going through the guide from Princeton Research Computing:
 - https://researchcomputing.princeton.edu/get-started/guide-princeton-clusters
@@ -498,9 +502,11 @@ If you are impatient, you can directly jump to the Python page:
 - https://researchcomputing.princeton.edu/support/knowledge-base/python
 
 
-#### b-2.2 A helper tools for batch submitting jobs to the cluster
+#### b-2.2 A helper tool for batch submitting jobs to the cluster
 
-For example, in our [Shelf 2D](https://github.com/YaoGroup/IceShelf2D), we have a script file `script_inverse.py` for inversion of hardness. One can run the script via terminal:
+Before reading this section, be sure you understand the basics of a Slurm script (b-2.1).
+
+To understand the use case of the helper tool, take our [Shelf 2D](https://github.com/YaoGroup/IceShelf2D) as example. We have a script file `script_inverse.py` for inversion of hardness. One can run the script via terminal:
 ```
 python script_inverse.py 0.001 -o ./output_dir
 ```
@@ -516,17 +522,96 @@ python script_inverse.py 0.02 -o ./noise_experiment &&
 python script_inverse.py 0.05 -o ./noise_experiment &&
 ...
 ```
+The above will run the script with different parameters, one after one (i.e. sequentially). To run the jobs parallelly on the cluster, we need to write a Slurm script using [job array](https://researchcomputing.princeton.edu/support/knowledge-base/slurm#arrays), which looks like (some details ommited):
 
+```
+#!/bin/bash
+#SBATCH --job-name=test_sample 
+#SBATCH --nodes=1 
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=4G
+#SBATCH --time=0:30:43
+#SBATCH --array=0-5
+
+if [[ $SLURM_ARRAY_TASK_ID -eq "0" ]]; then python script_inverse.py 0.001 -o ./noise_experiment/0001
+if [[ $SLURM_ARRAY_TASK_ID -eq "1" ]]; then python script_inverse.py 0.002 -o ./noise_experiment/0002
+if [[ $SLURM_ARRAY_TASK_ID -eq "2" ]]; then python script_inverse.py 0.005 -o ./noise_experiment/0005
+if [[ $SLURM_ARRAY_TASK_ID -eq "3" ]]; then python script_inverse.py 0.01 -o ./noise_experiment/001
+if [[ $SLURM_ARRAY_TASK_ID -eq "4" ]]; then python script_inverse.py 0.02 -o ./noise_experiment/002
+if [[ $SLURM_ARRAY_TASK_ID -eq "5" ]]; then python script_inverse.py 0.05 -o ./noise_experiment/005
+```
+    
 We create a simple tool for precisely the above use case:
 https://github.com/YaoGroup/slurm_tool
 
 **As long as your script can vary the target variable by accepting argument(s) from terminal**, our tool can transform the above terminal task into a Slurm script for the cluster. For detailed usage, please refer to the GitHub page.
 
+## C. Protect Your Data
+    
+:::info
+To make sure we do not loss any important progress, it's our policy that:
+* Upload all codes to GitHub
+* Store all the data/documents on the cluster storage with backup system
+:::
 
-## C. References
+You already know how to upload code to GitHub. This section provides step-by-step guide on mounting data storage supported with backup system, provided by [Princeton Research Computing](https://researchcomputing.princeton.edu/support/knowledge-base/data-storage). Our group acquires few TB space on /projects/LAI. 
+
+There are basically two different protocols to connect directly to the storage space on local machine **SMB** and **SSH**.
+
+:::success
+User must be **inside Princeton VPN** for all the followings methods. Also the **login account and password is Princeton Net ID (with some variation for SMB, see below)** not workstation account.
+:::
+
+
+We show how to mount local drive to the space on SSH and/or SMB:
+
+> **For Linux**
+> 
+> We can mount the folder via SSH:
+> 
+> `mkdir ~/tigressdata`\
+> `sshfs <NetID>@della.princeton.edu:/projects/LAI ~/tigressdata`
+> 
+> Replace ~/tigressdata with the directory you want to mount on. And the NetID is your Princeton ID, not the one on this workstation.
+
+> **For Mac**
+> ----- Using SMB (Easier, Recommended)-----
+>
+> Mount /projects/LAI using SMB -- check out [this](https://ag.montana.edu/it/support/smb-macs.html). Or you prefer [do it in commnad line](https://gist.github.com/natritmeyer/6621231)
+> 
+> Follow the tutorial, while use `smb://tigress-cifs.princeton.edu/fileset-lai
+` as path, `PRINCETON\<NetID>` as username and password of your Princeton account.
+>
+> ----- Using SSH -----
+> 
+> To use SSH protocol to mount the space. Open a terminal and install the followings using brew:
+>
+>`brew cask install osxfuse`\
+`brew install sshfs`
+>
+> And following the same instruction on **Linux** section should work.
+
+> **For Windows**
+> 
+> Windows has to manually install mores for mounting directory via SSH. 
+> [Check out this](https://github.com/billziss-gh/sshfs-win)
+>
+> On the other hand, SMB is much easier (it's native for Windows). We recommend using **SMB** on Windows. Open "PC", click the "computer" at top-left, then click "Map Network Drive".
+>
+> Select the whatever Drive (Y:, Z:, ...) you like, and type the following into the Folder field:\
+> `\\tigress-cifs.princeton.edu\fileset-lai`
+> ![](https://i.imgur.com/7eoskcn.png)
+>
+> For credentials, type the followings:\
+> account: PRINCETON\\<NetID>\
+> password: your password for Princeton account
+> ![](https://i.imgur.com/0s6h5Iq.png)
+
+After mounting, accessing the directory is equavalent to access the /projects/LAI on Princeton tigressdata system. So the files copied/written into it automatically share the benefit of tigressdata, like scheduled backup .etc
+
+## D. Other References
 
 ### [Crash Course on Version Control using Git](https://hackmd.io/esQE9LzzTne-yhTrDzR9Iw?view)
 
 ### [Remote Access to the workstation](https://hackmd.io/9iVBJfITQwy8tIz9ubgorw?view)
-
-### [Using Long-term Storage on HPC](https://hackmd.io/KmB3_m4zQNedVgHcWgaumg?view)
