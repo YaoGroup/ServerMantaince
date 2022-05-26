@@ -4,7 +4,7 @@
 [View it on HackMD](https://hackmd.io/dd8wi827SpCLAe8p2Ype6w)
 
 This note serves the following purpose:
-- As the onboard training for anyone using the workstation for his work. It provides best practices for writing code and using the workstation to run code.
+- As the onboard training for anyone using the workstation for their work. It provides best practices for writing code and using the workstation to run code.
 - As the reference note for fundamental technical issues or additional tips for enhancing the personal workflow.
 - As the reference note for the future administrator to understand the system setup.
 
@@ -615,3 +615,11 @@ After mounting, accessing the directory is equavalent to access the /projects/LA
 ### [Crash Course on Version Control using Git](https://hackmd.io/esQE9LzzTne-yhTrDzR9Iw?view)
 
 ### [Remote Access to the workstation](https://hackmd.io/9iVBJfITQwy8tIz9ubgorw?view)
+
+### [Using Conda Environment Remotely with Visual Studio Code](https://hackmd.io/meeqtJktRfmAD-8gZwsk-g?view)
+    
+### [Jupyter with Environment File](https://hackmd.io/Cz7nFAVyTf-nx1WK6SrO-Q)
+    
+### [Scales-up PINN to Real Data (under construction)](https://hackmd.io/BLBm6v2CRHGe5xsfPGPN_g?view)
+    
+### [Della MATLAB GUI (under construction)](https://hackmd.io/i2ent7pRRGCYq8YR6Bk6aw)
